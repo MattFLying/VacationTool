@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-09-26 19:55:22 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="VtVacation" table="vt_vacation" catalog="VacationTool" optimistic-lock="version">
+        <id name="idVacation" type="java.lang.Integer">
+            <column name="id_vacation" />
+            <generator class="identity" />
+        </id>
+        <property name="vacYear" type="java.lang.Integer">
+            <column name="vac_year" />
+        </property>
+        <property name="vacDaysLeft" type="java.lang.Integer">
+            <column name="vac_daysLeft" />
+        </property>
+        <property name="vacType" type="int">
+            <column name="vac_type" not-null="true" />
+        </property>
+        <property name="vacEmployeeId" type="int">
+            <column name="vac_employee_id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
