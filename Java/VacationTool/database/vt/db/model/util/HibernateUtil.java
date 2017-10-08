@@ -2,12 +2,9 @@ package vt.db.model.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 /***
  * Basic class allows to connection with database using Hibernate.
- * 
  * @author Mateusz Mucha
- *
  */
 public class HibernateUtil {
 	private static SessionFactory sessionFactory = null;
@@ -18,11 +15,9 @@ public class HibernateUtil {
 		}
 		return sessionFactory;
 	}
-
 	public static void setSessionFactory(SessionFactory sessionFactory) {
 		HibernateUtil.sessionFactory = sessionFactory;
 	}
-
 	public static void closeSessionFactory() {
 		sessionFactory.close();
 	}

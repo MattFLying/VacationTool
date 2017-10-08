@@ -4,6 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+    
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/VacationTool</property>
@@ -13,15 +14,13 @@
         <property name="hibernate.validator.apply_to_ddl">false</property>
         
         
-        
-        <mapping resource="VtFreeDays.hbm.xml" />
-        <mapping resource="VtApplication.hbm.xml" />
-        <mapping resource="VtVacationType.hbm.xml" />
-        <mapping resource="VtEmployee.hbm.xml" />
-        <mapping resource="VtVacation.hbm.xml" />
-        <mapping resource="VtPosition.hbm.xml" />
-        <mapping resource="VtDepartment.hbm.xml" />
-        
-        
+        <mapping resource="hbm/Application.hbm.xml" />
+        <mapping resource="hbm/Department.hbm.xml" />
+        <mapping resource="hbm/Employee.hbm.xml" />
+        <mapping resource="hbm/FreeDays.hbm.xml" />
+        <mapping resource="hbm/Position.hbm.xml" />
+        <mapping resource="hbm/Vacation.hbm.xml" />
+        <mapping resource="hbm/VacationType.hbm.xml" />
+
     </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-09-26 19:55:22 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+	<class name="vt.db.model.entity.VacationType" table="vt_vacation_type"
+		catalog="VacationTool" optimistic-lock="version">
+		
+		
+		<id name="id" type="java.lang.Integer">
+			<column name="id_vacation_type" />
+			<generator class="identity" />
+		</id>
+		<property name="vacTypeName" type="string">
+			<column name="vacType_name" length="45" />
+		</property>
+		<property name="vacTypeMaxDays" type="java.lang.Integer">
+			<column name="vacType_maxDays" />
+		</property>
+		
+		
+	</class>
+</hibernate-mapping>
