@@ -1,0 +1,275 @@
+INSERT INTO `vacationtool`.`vt_department` (`id_department`, `dep_name`) VALUES ('1', 'IT');
+
+INSERT INTO `vacationtool`.`vt_department` (`id_department`, `dep_name`) VALUES ('2', 'Ksiêgowoœæ');
+
+INSERT INTO `vacationtool`.`vt_department` (`id_department`, `dep_name`) VALUES ('3', 'HR');
+
+INSERT INTO `vacationtool`.`vt_department` (`id_department`, `dep_name`) VALUES ('4', 'Logistyka');
+
+INSERT INTO `vacationtool`.`vt_department` (`id_department`, `dep_name`) VALUES ('5', 'Prawny');
+
+INSERT INTO `vacationtool`.`vt_department` (`id_department`, `dep_name`) VALUES ('6', 'Marketing');
+
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('1', 'Programista', '1');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('2', 'Administrator', '1');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('3', 'G³ówny Ksiêgowy', '2');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('4', 'Doradca Podatkowy', '2');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('5', 'Doradca Personalny', '3');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('6', 'Headhunter', '3');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('7', 'Kierowca', '4');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('8', 'Magazynier', '4');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('9', 'Radca Prawny', '5');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('10', 'Hostessa', '6');
+
+INSERT INTO `vacationtool`.`vt_position` (`id_position`, `pos_name`, `pos_department_id`) VALUES ('11', 'Project Manager', '6');
+
+
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('1', 'Piotr', 'Odwa¿ny', '01-12-1965', '1', '2', NULL, '1', 'I001', '1', '8', '10-05-2017');
+UPDATE `vacationtool`.`vt_employee` SET `emp_manager_id`='1' WHERE `id_employee`='1';
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('8', 'Krzysztof', 'Wysoki', '21-09-1984', '2', '3', '1', '1', 'L008', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('4', 'Marek', 'Przypadkowy', '08-05-1994', '4', '8', '1', '1', 'L004', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('5', 'Katarzyna', 'Kowalska', '30-10-1972', '5', '9', '1', '0', 'P005', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('7', 'Anna', 'Sprawna', '27-02-1979', '1', '1', '1', '0', 'I007', '0.75', '6', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('11', 'Zofia', 'Ka³u¿na', '10-11-1987', '6', '10', '1', '1', 'M011', '0.5', '4', '23-10-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('14', 'Klaudia', 'Karteczka', '12-01-1975', '3', '6', '1', '1', 'H014', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('15', 'Weronika', 'Czepialska', '07-12-1986', '1', '1', '1', '0', 'I015', '0.75', '6', '19-08-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('2', 'Jan', 'Kowalski', '23-02-1973', '2', '4', '8', '0', 'L002', '0.75', '6', '13-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('3', 'Joanna', 'Zabawna', '13-11-1982', '3', '5', '14', '0', 'H003', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('6', 'Piotr', 'Spokojny', '17-07-1961', '6', '11', '11', '0', 'M006', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('9', 'Mateusz', 'Szarlotka', '02-12-1991', '3', '6', '14', '0', 'H009', '0.75', '6', '17-07-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('10', 'Monika', 'Wyimaginowana', '15-10-1976', '4', '7', '4', '0', 'L010', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('12', 'Pawe³', 'Król', '09-04-1971', '4', '7', '4', '0', 'L012', '1', '8', '10-05-2017');
+INSERT INTO `vacationtool`.`vt_employee` (`id_employee`, `emp_firstName`, `emp_lastName`, `emp_birthDate`, `emp_department_id`, `emp_position_id`, `emp_manager_id`, `emp_isManager`, `emp_evidenceNumber`, `emp_areaOfWork`, `emp_workingHoursPerDay`, `emp_firstWorkDay`) VALUES ('13', 'Adam', 'Wysocki', '31-08-1989', '4', '8', '4', '0', 'L013', '0.75', '6', '28-06-2017');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('1', 'Wypoczynkowy', '26');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('2', 'Na ¿¹danie', '4');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('3', 'Bezp³atny', '-1');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('4', 'Okolicznoœciowy', '2');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('5', 'Opieka nad dzieckiem', '2');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('6', 'Macierzyñski', '259');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('7', 'Ojcowski', '14');
+
+INSERT INTO `vacationtool`.`vt_vacation_type` (`id_vacation_type`, `vacType_name`, `vacType_maxDays`) VALUES ('8', 'Rodzicielski', '238');
+
+
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('1', '1', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('2', '6', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('3', '7', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('4', '8', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('5', '14', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('6', '15', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('7', '21', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('8', '22', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('9', '28', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('10', '29', '1', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('11', '4', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('12', '5', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('13', '11', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('14', '12', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('15', '18', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('16', '19', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('17', '25', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('18', '26', '2', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('19', '4', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('20', '5', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('21', '11', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('22', '12', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('23', '18', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('24', '19', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('25', '25', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('26', '26', '3', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('27', '1', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('28', '2', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('29', '8', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('30', '9', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('31', '15', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('32', '16', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('33', '17', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('34', '22', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('35', '23', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('36', '29', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('37', '30', '4', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('38', '1', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('39', '3', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('40', '6', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('41', '7', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('42', '13', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('43', '14', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('44', '20', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('45', '21', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('46', '27', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('47', '28', '5', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('48', '3', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('49', '4', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('50', '10', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('51', '11', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('52', '15', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('53', '17', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('54', '18', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('55', '24', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('56', '25', '6', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('57', '1', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('58', '2', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('59', '8', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('60', '9', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('61', '15', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('62', '16', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('63', '22', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('64', '23', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('65', '29', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('66', '30', '7', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('67', '5', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('68', '6', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('69', '12', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('70', '13', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('71', '15', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('72', '19', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('73', '20', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('74', '26', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('75', '27', '8', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('76', '2', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('77', '3', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('78', '9', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('79', '10', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('80', '16', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('81', '17', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('82', '23', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('83', '24', '9', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('84', '1', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('85', '7', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('86', '8', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('87', '14', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('88', '15', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('89', '21', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('90', '22', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('91', '28', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('92', '29', '10', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('93', '1', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('94', '4', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('95', '5', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('96', '11', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('97', '12', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('98', '18', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('99', '19', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('100', '25', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('101', '26', '11', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('102', '2', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('103', '3', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('104', '9', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('105', '10', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('106', '16', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('107', '17', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('108', '23', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('109', '24', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('110', '25', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('111', '26', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('112', '30', '12', '2017');
+INSERT INTO `vacationtool`.`vt_free_days` (`id_free`, `free_day`, `free_month`, `free_year`) VALUES ('113', '31', '12', '2017');
+
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('1', '2017', '26', '1', '1');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('2', '2017', '4', '2', '1');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('3', '2017', '-1', '3', '1');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('4', '2017', '2', '4', '1');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('5', '2017', '26', '1', '2');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('6', '2017', '26', '1', '3');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('7', '2017', '26', '1', '4');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('8', '2017', '26', '1', '5');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('9', '2017', '26', '1', '6');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('10', '2017', '26', '1', '7');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('11', '2017', '26', '1', '8');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('12', '2017', '26', '1', '9');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('13', '2017', '26', '1', '10');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('14', '2017', '26', '1', '11');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('15', '2017', '26', '1', '12');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('16', '2017', '26', '1', '13');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('17', '2017', '26', '1', '14');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('18', '2017', '26', '1', '15');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('19', '2017', '4', '2', '1');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('20', '2017', '4', '2', '2');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('21', '2017', '4', '2', '3');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('22', '2017', '4', '2', '4');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('23', '2017', '4', '2', '5');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('24', '2017', '4', '2', '6');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('25', '2017', '4', '2', '7');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('26', '2017', '4', '2', '8');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('27', '2017', '4', '2', '9');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('28', '2017', '4', '2', '10');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('29', '2017', '4', '2', '11');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('30', '2017', '4', '2', '12');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('31', '2017', '4', '2', '13');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('32', '2017', '4', '2', '14');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('33', '2017', '4', '2', '15');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('34', '2017', '-1', '3', '1');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('35', '2017', '-1', '3', '2');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('36', '2017', '-1', '3', '3');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('37', '2017', '-1', '3', '4');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('38', '2017', '-1', '3', '5');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('39', '2017', '-1', '3', '6');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('40', '2017', '-1', '3', '7');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('41', '2017', '-1', '3', '8');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('42', '2017', '-1', '3', '9');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('43', '2017', '-1', '3', '10');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('44', '2017', '-1', '3', '11');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('45', '2017', '-1', '3', '12');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('46', '2017', '-1', '3', '13');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('47', '2017', '-1', '3', '14');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('48', '2017', '-1', '3', '15');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('49', '2017', '2', '4', '1');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('50', '2017', '2', '4', '2');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('51', '2017', '2', '4', '3');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('52', '2017', '2', '4', '4');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('53', '2017', '2', '4', '5');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('54', '2017', '2', '4', '6');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('55', '2017', '2', '4', '7');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('56', '2017', '2', '4', '8');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('57', '2017', '2', '4', '9');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('58', '2017', '2', '4', '10');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('59', '2017', '2', '4', '11');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('60', '2017', '2', '4', '12');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('61', '2017', '2', '4', '13');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('62', '2017', '2', '4', '14');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('63', '2017', '2', '4', '15');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('64', '2017', '2', '5', '2');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('65', '2017', '2', '5', '4');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('66', '2017', '2', '5', '6');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('67', '2017', '2', '5', '8');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('68', '2017', '2', '5', '10');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('69', '2017', '2', '5', '12');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('70', '2017', '2', '5', '14');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('71', '2017', '2', '5', '15');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('72', '2017', '259', '6', '10');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('73', '2017', '259', '6', '14');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('74', '2017', '259', '6', '15');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('75', '2017', '14', '7', '2');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('76', '2017', '14', '7', '4');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('77', '2017', '14', '7', '6');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('78', '2017', '14', '7', '8');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('79', '2017', '238', '8', '2');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('80', '2017', '238', '8', '4');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('81', '2017', '238', '8', '6');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('82', '2017', '238', '8', '8');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('83', '2017', '238', '8', '10');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('84', '2017', '238', '8', '12');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('85', '2017', '238', '8', '14');
+INSERT INTO `vacationtool`.`vt_vacation` (`id_vacation`, `vac_year`, `vac_daysLeft`, `vac_type`, `vac_employee_id`) VALUES ('86', '2017', '238', '8', '15');
+
+
+
+
+

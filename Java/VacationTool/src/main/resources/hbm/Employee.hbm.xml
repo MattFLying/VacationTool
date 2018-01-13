@@ -11,6 +11,15 @@
 			<column name="id_employee" />
 			<generator class="identity" />
 		</id>
+		<property name="empPassword" type="string">
+			<column name="emp_password" length="60" />
+		</property>
+		<property name="empRole" type="string">
+			<column name="emp_role" length="45" />
+		</property>
+		<property name="empEnabled" type="java.lang.Integer">
+			<column name="emp_enabled" />
+		</property>
 		<property name="empFirstName" type="string">
 			<column name="emp_firstName" length="75" />
 		</property>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!--  -->
+<!--  -->
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<title>System Zarządzający Wnioskami Urlopowymi - Kierownik</title>
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="/css/vacationtool.css"></link>
+</head>
+<!--  -->
+<!--  -->
+<body class="bodyColor">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-lg-2">
+			<!--  Navbar -->
+				<div id="navbaradmin"></div>
+			<!--  Navbar -->
+			</div>
+			<div class="col-sm-9 col-lg-10">
+			<!--  Content -->
+
+
+
+				<div class="container">
+					<div class="col-md-11">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3>Profil Użytkownika Systemu</h3>
+							</div>
+							<div class="panel-body">
+
+								<div class="box box-info">
+
+									<div class="box-body">
+										<div class="col-sm-6">
+											<div align="center">
+												<img alt="User Pic"
+													src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+													id="profile-image1" class="img-circle img-responsive"></img>
+
+												<input id="profile-image-upload" class="hidden" type="file"></input>
+												<div style="color: #999;">zmień zdjęcie...</div>
+												<!--Upload Image Js And Css-->
+												<div class="btn-group">
+													<button type="button" class="btn btn-primary">
+														Social</button>
+													<button type="button"
+														class="btn btn-primary dropdown-toggle"
+														data-toggle="dropdown">
+														<span class="caret"></span><span class="sr-only">Social</span>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li><a href="#">Twitter</a></li>
+														<li><a
+															href="https://plus.google.com/+Jquery2dotnet/posts">Google
+																+</a></li>
+														<li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+														<li class="divider"></li>
+														<li><a href="#">Github</a></li>
+													</ul>
+												</div>
+
+
+
+
+
+
+											</div>
+
+											<br></br>
+
+											<!-- /input-group -->
+										</div>
+										<div class="col-sm-6">
+											<h4 style="color: #008000;" th:text="${employee.empFirstName} + ' ' + ${employee.empLastName}"></h4>
+											<span><p style="color: #d50000;" th:text="'Kierownik - ' + ${position.positionName}"></p></span>
+										</div>
+
+										<div class="clearfix"></div>
+										<div><h4>Dane personalne</h4></div>
+										<hr style="margin: 5px 0 5px 0;"></hr>
+
+
+										<div class="col-sm-5 col-xs-6 tital ">Imie:</div>
+										<div class="col-sm-7 col-xs-6 "><span th:text="${employee.empFirstName}"></span></div>
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+
+										<div class="col-sm-5 col-xs-6 tital ">Nazwisko:</div>
+										<div class="col-sm-7"><span th:text="${employee.empLastName}"></span></div>
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+
+										<div class="col-sm-5 col-xs-6 tital ">Data urodzenia:</div>
+										<div class="col-sm-7"><span th:text="${employee.empBirthDate}"></span></div>
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+										
+										<div><h4>Dane pracownika</h4></div>
+										<hr style="margin: 5px 0 5px 0;"></hr>
+										
+										<div class="col-sm-5 col-xs-6 tital ">Numer ewidencyjny:</div>
+										<div class="col-sm-7"><span th:text="${employee.empEvidenceNumber}"></span></div>
+
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+
+										<div class="col-sm-5 col-xs-6 tital ">Wydział:</div>
+										<div class="col-sm-7"><span th:text="${department.depName}"></span></div>
+
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+										
+										<div class="col-sm-5 col-xs-6 tital ">Kierownik:</div>
+										<div class="col-sm-7"><span th:text="${manager}"></span></div>
+
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+
+										<div class="col-sm-5 col-xs-6 tital ">Zatrudniony:</div>
+										<div class="col-sm-7"><span th:text="${employee.empFirstWorkDay}"></span></div>
+
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+
+										<div class="col-sm-5 col-xs-6 tital ">Wymiar pracy:</div>
+										<div class="col-sm-7"><span th:text="${areaOfWork}"></span></div>
+										
+										<div class="clearfix"></div>
+										<div class="bot-border"></div>
+
+										<div class="col-sm-5 col-xs-6 tital ">Godzin tygodniowo:</div>
+										<div class="col-sm-7"><span th:text="${employee.empWorkingHoursPerDay}"></span></div>
+										
+										
+										
+										
+
+
+										<!-- /.box-body -->
+									</div>
+									<!-- /.box -->
+
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+				
+				<!--  Content -->
+			</div>
+		</div>
+		
+	</div>
+
+	
+</body>
+<!--  -->
+<!--  -->
+<script>
+	$(function() {
+		$("#navbaradmin").load("/core/manager/navbar.html");
+	});
+</script>
+<script>
+	$(function() {
+		$("footer").load("/core/footer.html");
+	});
+</script>
+<script>
+	$(function() {
+		$('#profile-image1').on('click', function() {
+			$('#profile-image-upload').click();
+		});
+	});
+</script>
+<!--  -->
+<!--  -->
+</html>

@@ -1,0 +1,217 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema VacationTool
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema VacationTool
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `VacationTool` DEFAULT CHARACTER SET utf8 ;
+USE `VacationTool` ;
+
+-- -----------------------------------------------------
+-- Table `VacationTool`.`vt_Department`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VacationTool`.`vt_Department` (
+  `id_department` INT NOT NULL AUTO_INCREMENT,
+  `dep_name` VARCHAR(75) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_department`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VacationTool`.`vt_Position`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VacationTool`.`vt_Position` (
+  `id_position` INT NOT NULL AUTO_INCREMENT,
+  `pos_name` VARCHAR(75) NULL DEFAULT NULL,
+  `pos_department_id` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id_position`),
+  INDEX `fk_position_department_idx` (`pos_department_id` ASC),
+  CONSTRAINT `fk_position_department`
+    FOREIGN KEY (`pos_department_id`)
+    REFERENCES `VacationTool`.`vt_Department` (`id_department`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VacationTool`.`vt_Employee`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VacationTool`.`vt_Employee` (
+  `id_employee` INT NOT NULL AUTO_INCREMENT,
+  `emp_firstName` VARCHAR(75) NULL DEFAULT NULL,
+  `emp_lastName` VARCHAR(75) NULL DEFAULT NULL,
+  `emp_birthDate` VARCHAR(10) NULL DEFAULT NULL,
+  `emp_avatar` VARCHAR(255) NULL DEFAULT NULL,
+  `emp_department_id` INT NULL DEFAULT NULL,
+  `emp_position_id` INT NULL DEFAULT NULL,
+  `emp_manager_id` INT NULL DEFAULT NULL,
+  `emp_isManager` INT(1) NULL DEFAULT 0,
+  `emp_evidenceNumber` VARCHAR(4) NULL DEFAULT NULL,
+  `emp_areaOfWork` DOUBLE(3,2) NULL DEFAULT 0,
+  `emp_workingHoursPerDay` INT(2) NULL DEFAULT 0,
+  `emp_firstWorkDay` VARCHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_employee`),
+  INDEX `fk_employee_position_idx` (`emp_position_id` ASC),
+  INDEX `fk_employee_department_idx` (`emp_department_id` ASC),
+  INDEX `fk_employee_manager_idx` (`emp_manager_id` ASC),
+  CONSTRAINT `fk_employee_position`
+    FOREIGN KEY (`emp_position_id`)
+    REFERENCES `VacationTool`.`vt_Position` (`id_position`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_employee_department`
+    FOREIGN KEY (`emp_department_id`)
+    REFERENCES `VacationTool`.`vt_Department` (`id_department`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_employee_manager`
+    FOREIGN KEY (`emp_manager_id`)
+    REFERENCES `VacationTool`.`vt_Employee` (`id_employee`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VacationTool`.`vt_Vacation_Type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VacationTool`.`vt_Vacation_Type` (
+  `id_vacation_type` INT NOT NULL AUTO_INCREMENT,
+  `vacType_name` VARCHAR(45) NULL DEFAULT NULL,
+  `vacType_maxDays` INT(3) NULL DEFAULT 0,
+  PRIMARY KEY (`id_vacation_type`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VacationTool`.`vt_Vacation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VacationTool`.`vt_Vacation` (
+  `id_vacation` INT NOT NULL AUTO_INCREMENT,
+  `vac_year` INT(4) NULL DEFAULT NULL,
+  `vac_daysLeft` INT(3) NULL DEFAULT NULL,
+  `vac_type` INT NOT NULL DEFAULT 0,
+  `vac_employee_id` INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id_vacation`),
+  INDEX `fk_vacation_type_idx` (`vac_type` ASC),
+  INDEX `fk_vacation_employee_idx` (`vac_employee_id` ASC),
+  CONSTRAINT `fk_vacation_type`
+    FOREIGN KEY (`vac_type`)
+    REFERENCES `VacationTool`.`vt_Vacation_Type` (`id_vacation_type`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_vacation_employee`
+    FOREIGN KEY (`vac_employee_id`)
+    REFERENCES `VacationTool`.`vt_Employee` (`id_employee`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VacationTool`.`vt_Application`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VacationTool`.`vt_Application` (
+  `id_application` INT NOT NULL AUTO_INCREMENT,
+  `app_type` INT NULL DEFAULT NULL,
+  `app_dateFrom` VARCHAR(19) NULL DEFAULT NULL,
+  `app_dateTo` VARCHAR(19) NULL DEFAULT NULL,
+  `app_days` INT(3) NULL DEFAULT 0,
+  `app_replacement` INT NULL DEFAULT NULL,
+  `app_comment` VARCHAR(255) NULL DEFAULT NULL,
+  `app_employee_id` INT NULL DEFAULT NULL,
+  `app_createdDate` VARCHAR(19) NULL DEFAULT NULL,
+  `app_acceptedManager` INT NULL DEFAULT NULL,
+  `app_acceptedDate` VARCHAR(19) NULL DEFAULT NULL,
+  `app_modifiedBy` INT NULL DEFAULT NULL,
+  `app_modifiedDate` VARCHAR(19) NULL DEFAULT NULL,
+  `app_status` INT(1) NULL DEFAULT 0,
+  `app_pdf` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_application`),
+  INDEX `fk_application_employee_idx` (`app_employee_id` ASC),
+  INDEX `fk_application_type_idx` (`app_type` ASC),
+  INDEX `fk_application_replacement_idx` (`app_replacement` ASC),
+  INDEX `fk_application_manager_idx` (`app_acceptedManager` ASC),
+  INDEX `fk_application_modifiedBy_idx` (`app_modifiedBy` ASC),
+  CONSTRAINT `fk_application_employee`
+    FOREIGN KEY (`app_employee_id`)
+    REFERENCES `VacationTool`.`vt_Employee` (`id_employee`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_application_type`
+    FOREIGN KEY (`app_type`)
+    REFERENCES `VacationTool`.`vt_Vacation_Type` (`id_vacation_type`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_application_replacement`
+    FOREIGN KEY (`app_replacement`)
+    REFERENCES `VacationTool`.`vt_Employee` (`id_employee`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_application_manager`
+    FOREIGN KEY (`app_acceptedManager`)
+    REFERENCES `VacationTool`.`vt_Employee` (`id_employee`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_application_modifiedBy`
+    FOREIGN KEY (`app_modifiedBy`)
+    REFERENCES `VacationTool`.`vt_Employee` (`id_employee`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `VacationTool`.`vt_Free_Days`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `VacationTool`.`vt_Free_Days` (
+  `id_free` INT NOT NULL,
+  `free_day` INT(2) NULL DEFAULT 0,
+  `free_month` INT(2) NULL DEFAULT 0,
+  `free_year` INT(4) NULL DEFAULT 0,
+  PRIMARY KEY (`id_free`))
+ENGINE = InnoDB;
+
+USE `VacationTool`;
+
+DELIMITER $$
+USE `VacationTool`$$
+CREATE TRIGGER createdApplicationDate
+BEFORE INSERT ON vt_Application
+FOR EACH ROW BEGIN
+
+SET NEW.app_createdDate = now();
+
+END$$
+
+USE `VacationTool`$$
+CREATE TRIGGER modified
+BEFORE UPDATE ON vt_Application
+FOR EACH ROW BEGIN
+
+if old.app_status != new.app_status then
+set new.app_modifiedDate=now();
+
+END IF;
+
+if new.app_acceptedManager != NULL then
+set new.app_acceptedDate=now();
+
+END IF;
+
+END$$
+
+
+DELIMITER ;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

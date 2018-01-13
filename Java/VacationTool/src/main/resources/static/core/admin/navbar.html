@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+	<link rel="stylesheet" href="/css/vacationtool.css"></link>
+</head>
+
+<body>
+	<nav class="navbar navbar-default navbar-fixed-side">
+		<div class="nav-side-menu">
+			<div class="brand">
+				<center>
+					<hr class="my-4">
+					<img src="/img/base/logo.png" class="img-responsive" alt="logo"></img>
+					<hr class="my-4">
+				</center>
+			</div>
+			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+			<div class="menu-list">
+
+				<ul id="menu-content" class="menu-content collapse out">
+					<li data-toggle="collapse" data-target="#userpanel" class="collapsed active">
+						<a href="#"><i class="fa fa-gift fa-lg"></i>Panel Użytkownika<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="userpanel">
+						<li class="active"><a href="/a/index">Strona Główna</a></li>
+						<li><a href="/logout">Wyloguj</a></li>
+					</ul>
+
+
+					<li data-toggle="collapse" data-target="#employees" class="collapsed">
+						<a href="#"><i class="fa fa-globe fa-lg"></i>Zarządzaj Pracownikami<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="employees">
+						<li><a href="/a/employee">Przeglądaj Pracownika</a></li>
+						<li>Dodaj Pracownika</li>
+						<li>Modyfikuj Pracownika</li>
+						<li>Usuń Pracownika</li>
+					</ul>
+
+
+					<li data-toggle="collapse" data-target="#departments" class="collapsed">
+						<a href="#"><i class="fa fa-car fa-lg"></i>Zarządzaj Wydziałami<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="departments">
+						<li>Przeglądaj Wydział</li>
+						<li>Dodaj Wydział</li>
+						<li>Modyfikuj Wydział</li>
+						<li>Usuń Wydział</li>
+					</ul>
+
+
+					<li data-toggle="collapse" data-target="#positions" class="collapsed">
+						<a href="#"><i class="fa fa-car fa-lg"></i>Zarządzaj Stanowiskami<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="positions">
+						<li>Przeglądaj Stanowisko</li>
+						<li>Dodaj Stanowiska</li>
+						<li>Modyfikuj Stanowiska</li>
+						<li>Usuń Stanowiska</li>
+					</ul>
+
+
+					<li data-toggle="collapse" data-target="#vacationtypes" class="collapsed">
+						<a href="#"><i class="fa fa-car fa-lg"></i>Zarządzaj Rodzajami Urlopów<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="vacationtypes">
+						<li>Przeglądaj Urlop</li>
+						<li>Dodaj Urlop</li>
+						<li>Modyfikuj Urlop</li>
+						<li>Usuń Urlop</li>
+					</ul>
+
+
+					<li data-toggle="collapse" data-target="#vacations" class="collapsed">
+						<a href="#"><i class="fa fa-car fa-lg"></i>Zarządzaj Urlopami<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="vacations">
+						<li>Przeglądaj Urlop</li>
+						<li>Dodaj Urlop</li>
+						<li>Modyfikuj Urlop</li>
+						<li>Usuń Urlop</li>
+					</ul>
+
+
+					<li data-toggle="collapse" data-target="#freedays" class="collapsed">
+						<a href="#"><i class="fa fa-car fa-lg"></i>Zarządzaj Dniami Wolnymi<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="freedays">
+						<li>Przeglądaj Dni Wolne</li>
+						<li>Dodaj Dni Wolne</li>
+						<li>Modyfikuj Dni Wolne</li>
+						<li>Usuń Dni Wolne</li>
+					</ul>
+
+
+					<li data-toggle="collapse" data-target="#vacations" class="collapsed">
+						<a href="#"><i class="fa fa-car fa-lg"></i>Zarządzaj Wnioskami<span class="caretNavbarMain"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="vacations">
+						<li>Przeglądaj Wniosek</li>
+						<li>Dodaj Wniosek</li>
+						<li>Modyfikuj Wniosek</li>
+						<li>Usuń Wniosek</li>
+					</ul>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

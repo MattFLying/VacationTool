@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!--  -->
+<!--  -->
+<head>
+	<meta charset="utf-8" />
+	<title>System Zarządzający Wnioskami Urlopowymi - Strona Główna</title>
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="/css/vacationtool.css"></link>
+</head>
+<!--  -->
+<!--  -->
+<body class="bodyColor">
+
+<header>
+	<!-- Navbar  -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<img src="img/base/logo.png" class="img-responsive" alt="logo"></img>
+			</div> 
+			<ul class="nav navbar-nav navbar-left">
+				<li>
+					<a href="/index.html">
+						<font size="4">Strona Główna</font>
+					</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="/login.html">
+						<font size="4"><span class="glyphicon glyphicon-log-in"></span>  Zaloguj się!</font>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!-- /Navbar -->
+</header>
+
+<div class="container">
+	<div class="jumbotron">
+		<h2 class="display-4">Witaj w Systemie do Zarządzania Wnioskami Urlopowymi!</h2>
+		<hr class="my-4"></hr>
+
+		<div id="carousel" class="carousel slide" data-ride="carousel">
+			<!-- Menu -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel" data-slide-to="1"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+
+				<div class="item active">
+					<img src="img/carousel/vacation_1.png" alt="Slide 1" />
+					<div class="carousel-caption d-none d-md-block">
+						<p>Planujesz urlop?</p>
+						<h5>Poinformuj swojego pracodawcę!</h5>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/carousel/vacation_2.png" alt="Slide 1" />
+					<div class="carousel-caption d-none d-md-block">
+						<p>Zaloguj się!</p>
+						<h5>Skorzystaj z danych logowania otrzymanych od pracodawcy.</h5>
+					</div>
+				</div>
+			</div>
+
+			<!-- Left and right controls -->
+			<a href="#carousel" class="left carousel-control" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a> 
+			<a href="#carousel" class="right carousel-control" data-slide="next"> 
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+	</div>
+
+
+
+
+
+
+	<footer>
+		<div class="row footer">
+			<div class="col-md-12 mt-3 text-center">
+				<p>Autor inż. Mateusz Mucha <br>© Copyright 2017-2018 Zielona Góra</br><br>Wszystkie prawa zastrzeżone.</br></p>
+			</div>
+		</div>
+	</footer>
+</div>
+</body>
+<!--  -->
+<!--  -->
+	<script>
+		$(function() {
+			$('#carousel').carousel();
+		});
+	</script>
+</html>
