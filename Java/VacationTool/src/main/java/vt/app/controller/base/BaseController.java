@@ -1,4 +1,4 @@
-package vt.app.controller;
+package vt.app.controller.base;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
@@ -13,6 +13,7 @@ public abstract class BaseController {
 	protected EmployeeService emp = new EmployeeService();
 	protected DepartmentService dept = new DepartmentService();
 	protected PositionService pos = new PositionService();
+	protected int departmentId, managerId = 0;
 	
 	
 	protected void buildMainPanel(HttpSession session, Model model, String username) {

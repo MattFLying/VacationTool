@@ -1,5 +1,9 @@
 package vt.app.services;
 
+import java.util.List;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import vt.db.controller.dao.EmployeeDao;
 import vt.db.controller.dao.interfaces.IEmployee;
@@ -29,6 +33,9 @@ public class EmployeeService {
 	public Employee getEmployeeNameSurnameById(int id) {
 		return this.emp.findByIdNameSurname(id);
 	}
+	public List<Employee> getAllManagers() {
+		return this.emp.findAllManagers();
+	}
 	
 	
 	
@@ -37,5 +44,7 @@ public class EmployeeService {
 	
 	
 	
-	
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import vt.app.controller.base.BaseController;
+
 @Controller
 @Secured("ROLE_MANAGER")
 public class ManagerController extends BaseController {

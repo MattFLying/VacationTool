@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
 import vt.db.controller.dao.DepartmentDao;
 import vt.db.controller.dao.EmployeeDao;
@@ -17,11 +18,18 @@ import vt.db.model.entity.Employee;
 public class Test {
 
 	public static void main(String[] args) {
-		EmployeeDao dao = new EmployeeDao();
+		/*EmployeeDao dao = new EmployeeDao();
 		
 		Employee e = dao.findByIdNameSurname(4);
-		System.out.println(e.getEmpFirstName() + " " + e.getEmpEvidenceNumber());
-		
+		System.out.println(e.getEmpFirstName() + " " + e.getEmpEvidenceNumber());*/
+		/*String s = "22-11-1992";
+		System.out.println(s.substring(0, 2));
+		System.out.println(s.substring(3, 5));
+		System.out.println(s.substring(6, 10));*/
+		DepartmentService ds = new DepartmentService();
+		for(Department d : ds.getAllDepartments()) {
+			System.out.println(d.getId());
+		}
 		
 		/*for(int i = 0; i < 10; i++) {
 			String s = passwordEncoder().encode("haslo");
