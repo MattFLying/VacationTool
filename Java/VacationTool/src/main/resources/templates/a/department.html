@@ -34,7 +34,7 @@
 
 
 				<div class="container">
-					<h1>Szczegółowa lista wydziałów</h1>
+					<h1>Szczegółowa lista wydziałów i stanowisk</h1>
 					<hr></hr>
 					<div class="row">
 						<div class="panel panel-primary filterable">
@@ -362,11 +362,6 @@
 		$("#navbaradmin").load("/core/admin/navbar.html");
 	});
 </script>
-											<script>
-	$(function() {
-		$("footer").load("/core/footer.html");
-	});
-</script>
 <script>
 	$(function() {
 		$('#profile-image1').on('click', function() {
@@ -383,24 +378,6 @@
 				return rex.test($(this).text());
 			}).show();
 		});
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		$("#mytable #checkall").click(function() {
-			if ($("#mytable #checkall").is(':checked')) {
-				$("#mytable input[type=checkbox]").each(function() {
-					$(this).prop("checked", true);
-				});
-
-			} else {
-				$("#mytable input[type=checkbox]").each(function() {
-					$(this).prop("checked", false);
-				});
-			}
-		});
-
-		$("[data-toggle=tooltip]").tooltip();
 	});
 </script>
 <script>

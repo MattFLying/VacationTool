@@ -16,6 +16,7 @@ import vt.app.controller.base.BaseController;
 import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
 import vt.db.model.entity.Position;
+import vt.db.model.entity.VacationType;
 
 @Controller
 @Secured("ROLE_ADMIN")
@@ -144,7 +145,13 @@ public class AdminController extends BaseController {
 	
 	
 	
-	
+	@RequestMapping(value = "/a/vacationtype", method = RequestMethod.GET)
+	public ModelAndView vacationType(HttpSession session, Model model) {
+		List<VacationType> vacationTypes = vacType.getVacType().findAll(VacationType.class);
+		model.addAttribute("vacationTypes", vacationTypes);
+		
+		return new ModelAndView("a/vacationtype");
+	}
 	
 	
 	

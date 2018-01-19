@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
 import vt.app.services.PositionService;
+import vt.app.services.VacationTypeService;
 import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
 import vt.db.model.entity.Position;
@@ -13,6 +14,7 @@ public abstract class BaseController {
 	protected EmployeeService emp = new EmployeeService();
 	protected DepartmentService dept = new DepartmentService();
 	protected PositionService pos = new PositionService();
+	protected VacationTypeService vacType = new VacationTypeService();
 	protected int departmentId, managerId = 0;
 	
 	
