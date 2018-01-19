@@ -8,4 +8,5 @@ import vt.db.model.entity.Position;
 
 public interface IPosition extends IGenericDao<Position> {
 	public List<Position> findAllPositions();
+	public List<Position> findAllPositionsForDepartment(int departmentId);
 }

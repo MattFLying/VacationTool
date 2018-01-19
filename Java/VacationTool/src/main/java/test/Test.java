@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
+import vt.app.services.PositionService;
 import vt.db.controller.dao.DepartmentDao;
 import vt.db.controller.dao.EmployeeDao;
 import vt.db.controller.dao.interfaces.IDepartment;
@@ -14,6 +15,7 @@ import vt.db.controller.dao.interfaces.IEmployee;
 import vt.db.model.dao.IGenericDao;
 import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
+import vt.db.model.entity.Position;
 
 public class Test {
 
@@ -26,11 +28,14 @@ public class Test {
 		System.out.println(s.substring(0, 2));
 		System.out.println(s.substring(3, 5));
 		System.out.println(s.substring(6, 10));*/
-		DepartmentService ds = new DepartmentService();
+		/*DepartmentService ds = new DepartmentService();
 		for(Department d : ds.getAllDepartments()) {
 			System.out.println(d.getId());
+		}*/
+		PositionService ds = new PositionService();
+		for(Position d : ds.getAllPositionsForDepartment(2)) {
+			System.out.println(d.getId());
 		}
-		
 		/*for(int i = 0; i < 10; i++) {
 			String s = passwordEncoder().encode("haslo");
 			System.out.println(s);

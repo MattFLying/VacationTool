@@ -28,6 +28,9 @@ public class PositionService {
 	public List<Position> getAllPositions() {
 		return this.pos.findAllPositions();
 	}
+	public List<Position> getAllPositionsForDepartment(int departmentId) {
+		return this.pos.findAllPositionsForDepartment(departmentId);
+	}
 	
 	
 }

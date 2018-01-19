@@ -2,16 +2,11 @@ package vt.db.controller.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.transform.Transformers;
-
 import vt.db.controller.dao.interfaces.IPosition;
 import vt.db.model.dao.GenericDao;
-import vt.db.model.entity.Employee;
 import vt.db.model.entity.Position;
 import vt.db.model.util.HibernateUtil;
 
@@ -43,6 +38,28 @@ public class PositionDao extends GenericDao<Position> implements IPosition {
 		
 		return positions;
 	}
+	@Override
+	public List<Position> findAllPositionsForDepartment(int departmentId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Position> positions = null;
+		
+		try {
+			criteria = session.createCriteria(Position.class);
+			criteria.add(Restrictions.eq("positionDepartmentId", departmentId));
+			
+			positions = criteria.list();
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return positions;
+	}
+	
+	
 	
 	
 }
