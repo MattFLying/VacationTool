@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import vt.app.controller.base.BaseController;
 import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
+import vt.db.model.entity.FreeDays;
 import vt.db.model.entity.Position;
 import vt.db.model.entity.VacationType;
 
@@ -141,17 +142,80 @@ public class AdminController extends BaseController {
 		}
 		return new ModelAndView("redirect:a/department");
 	}
-	
-	
-	
-	
 	@RequestMapping(value = "/a/vacationtype", method = RequestMethod.GET)
 	public ModelAndView vacationType(HttpSession session, Model model) {
 		List<VacationType> vacationTypes = vacType.getVacType().findAll(VacationType.class);
 		model.addAttribute("vacationTypes", vacationTypes);
+		model.addAttribute("vacationTypeform", new VacationType());
 		
 		return new ModelAndView("a/vacationtype");
 	}
+	@RequestMapping(value = "/modifyvactype", method = RequestMethod.POST)
+	public ModelAndView modifyVacationType(@ModelAttribute(value = "vacationTypeform") VacationType vacationType) {
+		try {
+			vacType.getVacType().update(vacationType);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/vacationtype");
+	}
+	@RequestMapping(value = "/addvactype", method = RequestMethod.POST)
+	public ModelAndView addVacationType(@ModelAttribute(value = "vacationTypeform") VacationType vacationType) {
+		try {
+			vacType.getVacType().save(vacationType);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/vacationtype");
+	}
+	@RequestMapping(value = "/deletevactype", method = RequestMethod.POST)
+	public ModelAndView deletVacationType(@ModelAttribute(value = "vacationTypeform") VacationType vacationType) {
+		try {
+			vacType.getVacType().delete(vacationType);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/vacationtype");
+	}
+	@RequestMapping(value = "/a/freedays", method = RequestMethod.GET)
+	public ModelAndView freeDays(HttpSession session, Model model) {
+		List<FreeDays> freeDaysList = freeDays.getFreeDays().findAll(FreeDays.class);
+		model.addAttribute("freeDays", freeDaysList);
+		model.addAttribute("freeDaysform", new FreeDays());
+		model.addAttribute("freedayNames", freeDays);
+		
+		return new ModelAndView("a/freedays");
+	}
+	@RequestMapping(value = "/modifyfreedays", method = RequestMethod.POST)
+	public ModelAndView modifyFreeDays(@ModelAttribute(value = "vacationTypeform") FreeDays freeDay) {
+		try {
+			freeDays.getFreeDays().update(freeDay);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/freedays");
+	}
+	@RequestMapping(value = "/deletefreedays", method = RequestMethod.POST)
+	public ModelAndView deleteFreeDays(@ModelAttribute(value = "vacationTypeform") FreeDays freeDay) {
+		try {
+			freeDays.getFreeDays().delete(freeDay);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/freedays");
+	}
+	@RequestMapping(value = "/addfreedays", method = RequestMethod.POST)
+	public ModelAndView addFreeDays(@ModelAttribute(value = "vacationTypeform") FreeDays freeDay) {
+		try {
+			freeDays.getFreeDays().save(freeDay);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/freedays");
+	}
+	
+	
+	
 	
 	
 	

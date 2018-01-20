@@ -59,7 +59,7 @@
 									<tr>
 										<td width="50"><span>ID</span></td>
 										<td width="300"><span>Nazwa</span></td>
-										<td width="150"><span>Maksymalny czas[dni]</span></td>
+										<td width="150"><span>Maksymalny czas</span></td>
 										<td><span>Operacje</span></td>
 									</tr>
 								</thead>
@@ -93,7 +93,7 @@
 
 
 
-				<!-- Modify vacation type modal -->
+				<!-- Modify employee modal -->
 				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -104,29 +104,29 @@
 								<h4 class="modal-title custom_align" id="Heading">Edytuj Dane Rodzaju Urlopu</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/modifyvactype}" method="post">
+								<!-- <form action="#" th:action="@{/modifyemployee}" method="post">
 									<div class="row">
 										<div class="form-group col-xs-6">
 											<label style="width:50%">Imie: </label>
-											<input style="display:none" id="vactypeId" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.id}" th:field="${vacationTypeform.id}"></input>
-											<input id="vactypeName" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeName}" th:field="${vacationTypeform.vacTypeName}"></input>
-											<input id="vactypeMaxDays" name="empFirstName" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeMaxDays}" th:field="${vacationTypeform.vacTypeMaxDays}"></input>
+											<input style="display:none" id="employeeId" class="form-control" type="text" maxlength="75" th:value="${employeeform.id}" th:field="${employeeform.id}"></input>
+											<input style="display:none" id="pwdId" class="form-control" type="text" maxlength="75" th:value="${employeeform.empPassword}" th:field="${employeeform.empPassword}"></input>
+											<input id="empFirstName" name="empFirstName" class="form-control" type="text" maxlength="75" th:value="${employeeform.empFirstName}" th:field="${employeeform.empFirstName}"></input>
 										</div>
 									</div>
 									<div class="modal-footer">
 										<input type="submit" class="btn btn-warning btn-lg" value="Zapisz zmiany" />
 									</div>
-								</form> 
+								</form> -->
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /Modify vacation type modal -->
+				<!-- /Modify employee modal -->
 				
 				
 				
 				
-				<!-- Add vacation type modal -->
+				<!-- Add employee modal -->
 				<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -137,30 +137,26 @@
 								<h4 class="modal-title custom_align" id="Heading">Dodaj Nowy Rodzaj Urlopu</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/addvactype}" method="post">
+								<!-- <form action="#" th:action="@{/addemployee}" method="post">
 									<div class="row">
 										<div class="form-group col-xs-6">
-											<label style="width:50%">Nazwa: </label>
-											<input id="vactypename_add" required="required" name="vactypename" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeName}" th:field="${vacationTypeform.vacTypeName}"></input>
-										</div>
-										<div class="form-group col-xs-6">
-											<label style="width:50%">Max ilość dni: </label>
-											<input id="vacmaxdays_add" required="required" name="vactypename" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeMaxDays}" th:field="${vacationTypeform.vacTypeMaxDays}"></input>
+											<label style="width:50%">Imie: </label>
+											<input id="empFirstName_add" required="required" name="empFirstName" class="form-control" type="text" maxlength="75" th:value="${employeeform.empFirstName}" th:field="${employeeform.empFirstName}"></input>
 										</div>
 									</div>
 									<div class="modal-footer">
 										<input type="submit" class="btn btn-warning btn-lg" value="Dodaj pracownika" />
 									</div>
-								</form> 
+								</form> -->
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /Add vacation type modal -->
+				<!-- /Add employee modal -->
 				
 				
 				
-				<!-- Delete vacation type modal -->
+				<!-- Delete employee modal -->
 				<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -172,13 +168,16 @@
 								<h4 class="modal-title custom_align" id="Heading">Usuń wybrany rodzaj urlopu</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/deletevactype}" method="post">
+								<!-- <form action="#" th:action="@{/deleteemployee}" method="post">
 									<div class="alert alert-danger">
 										<span class="glyphicon glyphicon-warning-sign"></span> Jesteś
-										pewien, że chcesz usunąć ten typ urlopu?
+										pewien, że chcesz usunąć tego pracownika?
 									</div>
 									<div class="form-group col-xs-6">
-										<input style="display:none" id="vacIDdelete" class="form-control" type="text" maxlength="4" th:value="${vacationTypeform.id}" th:field="${vacationTypeform.id}"></input>
+										<input style="display:none" id="evidenceNumberToDelete" class="form-control" type="text" maxlength="4" th:value="${employeeform.empEvidenceNumber}" th:field="${employeeform.empEvidenceNumber}"></input>
+									</div>
+									<div class="form-group col-xs-6">
+										<input style="display:none" id="idToDelete" class="form-control" type="text" maxlength="4" th:value="${employeeform.id}" th:field="${employeeform.id}"></input>
 									</div>
 									<div class="modal-footer ">
 										<input type="submit" class="btn btn-success" value="Tak" />
@@ -186,12 +185,12 @@
 											<span class="glyphicon glyphicon-remove"></span> Nie
 										</button>
 									</div>
-								</form> 
+								</form> -->
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Delete vacation type modal -->
+				<!-- Delete employee modal -->
 
 
 
@@ -234,14 +233,7 @@
 		e.preventDefault();
 		var _self = $(this);
 
-		var vacID = _self.data('id');
-		$("#vactypeId").val(vacID);
 		
-		var vacName = $('#name' + vacID).text();
-		$("#vactypeName").val(vacName);
-		
-		var vacDays = $('#maxdays' + vacID).text();
-		$("#vactypeMaxDays").val(vacDays);
 
 		$(_self.attr('href')).modal('show');
 	});
@@ -250,6 +242,8 @@
 	$(document).on("click", ".open-AddVacationTypeDialog", function(e) {
 		e.preventDefault();
 		var _self = $(this);
+		
+		
 
 		$(_self.attr('href')).modal('show');
 	});
@@ -259,8 +253,7 @@
 		e.preventDefault();
 		var _self = $(this);
 
-		var vacID = _self.data('id');
-		$("#vacIDdelete").val(vacID);
+		
 		
 		$(_self.attr('href')).modal('show');
 	});

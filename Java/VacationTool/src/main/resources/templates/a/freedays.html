@@ -34,51 +34,54 @@
 
 
 				<div class="container">
-					<h1>Szczegółowa lista typów urlopów</h1>
+					<h1>Szczegółowa lista dni wolnych</h1>
 					<hr></hr>
 					<div class="row">
 						<div class="panel panel-primary filterable">
 							<div style="height: 50px;padding:0" class="panel-heading">
 								<br></br>
-								<h2 class="panel-title"> Rodzaje urlopów</h2>
+								<h2 class="panel-title"> Dni wolne</h2>
 							</div>
 							<table id="mytable" class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<td colspan="3">
+										<td colspan="4">
 											<div class="col-lg-12">
-												<input type="search" class="form-control" id="input-search" placeholder="Szukaj typ urlopu"></input>
+												<input type="search" class="form-control" id="input-search" placeholder="Szukaj dnia wolnego"></input>
 											</div>
 										</td>
 										<td colspan="1">
 											<div class="pull-right">
-												<button class="open-AddVacationTypeDialog btn btn-success" data-title="Dodaj" data-toggle="modal" data-target="#add">Dodaj urlop</button>
+												<button class="open-AddFreeDaysDialog btn btn-success" data-title="Dodaj" data-toggle="modal" data-target="#add">Dodaj dzień wolny</button>
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td width="50"><span>ID</span></td>
-										<td width="300"><span>Nazwa</span></td>
-										<td width="150"><span>Maksymalny czas[dni]</span></td>
+										<td width="150"><span>Dzień</span></td>
+										<td width="150"><span>Miesiąc</span></td>
+										<td width="150"><span>Rok</span></td>
 										<td><span>Operacje</span></td>
 									</tr>
 								</thead>
-								<tbody class="searchable-container" th:each="vacType : ${vacationTypes}">
-									<tr class="items clickable" data-toggle="collapse" th:attr="data-target='.' + ${vacType.id}">
-										<td th:attr="id='id' + ${vacType.id}" width="50"><span th:text="${vacType.id}"></span></td>
-										<td th:attr="id='name' + ${vacType.id}" width="50"><span th:text="${vacType.vacTypeName}"></span></td>
-										<td th:attr="id='maxdays' + ${vacType.id}"><span th:text="${vacType.vacTypeMaxDays}"></span></td>
+								<tbody class="searchable-container" th:each="free_Day : ${freeDays}">
+									<tr class="items clickable" data-toggle="collapse" th:attr="data-target='.' + ${free_Day.id}">
+										<td th:attr="id='id' + ${free_Day.id}" width="50"><span th:text="${free_Day.id}"></span></td>
+										<td th:attr="id='day' + ${free_Day.id}" width="50"><span th:text="${free_Day.freeDay}"></span></td>
+										<td th:attr="id='monthName' + ${free_Day.id}"><span th:text="${freedayNames.getMonthName(free_Day.freeMonth)}"></span></td>
+										<td style="display:none" th:attr="id='month' + ${free_Day.id}"><span th:text="${free_Day.freeMonth}"></span></td>
+										<td th:attr="id='year' + ${free_Day.id}"><span th:text="${free_Day.freeYear}"></span></td>
 										<td width="20%">
 											<div class="col-md-6">
 												<p data-placement="top" data-toggle="tooltip" title="Edytuj">
-													<button class="open-ModifyVacationTypeDialog btn btn-primary btn-xs" data-title="Edytuj" data-toggle="modal" data-target="#edit" th:attr="data-id=${vacType.id}">
+													<button class="open-ModifyFreeDaysDialog btn btn-primary btn-xs" data-title="Edytuj" data-toggle="modal" data-target="#edit" th:attr="data-id=${free_Day.id}">
 														<span class="glyphicon glyphicon-pencil"></span>
 													</button>
 												</p>
 											</div>
 											<div class="col-md-6">
 												<p data-placement="top" data-toggle="tooltip" title="Usuń">
-													<button class="open-DeleteVacationTypeDialog btn btn-danger btn-xs" data-title="Usuń" data-toggle="modal" data-target="#delete" th:attr="data-id=${vacType.id}">
+													<button class="open-DeleteFreeDaysDialog btn btn-danger btn-xs" data-title="Usuń" data-toggle="modal" data-target="#delete" th:attr="data-id=${free_Day.id}">
 														<span class="glyphicon glyphicon-trash"></span>
 													</button>
 												</p>
@@ -93,7 +96,7 @@
 
 
 
-				<!-- Modify vacation type modal -->
+				<!-- Modify free days modal -->
 				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -101,16 +104,19 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</button>
-								<h4 class="modal-title custom_align" id="Heading">Edytuj Dane Rodzaju Urlopu</h4>
+								<h4 class="modal-title custom_align" id="Heading">Edytuj Dane Dnia Wolnego</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/modifyvactype}" method="post">
+								<form action="#" th:action="@{/modifyfreedays}" method="post">
 									<div class="row">
 										<div class="form-group col-xs-6">
-											<label style="width:50%">Imie: </label>
-											<input style="display:none" id="vactypeId" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.id}" th:field="${vacationTypeform.id}"></input>
-											<input id="vactypeName" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeName}" th:field="${vacationTypeform.vacTypeName}"></input>
-											<input id="vactypeMaxDays" name="empFirstName" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeMaxDays}" th:field="${vacationTypeform.vacTypeMaxDays}"></input>
+											<input style="display:none" id="freeDayId" class="form-control" type="text" maxlength="75" th:value="${freeDaysform.id}" th:field="${freeDaysform.id}"></input>
+											<label style="width:50%">Dzień: </label>
+											<input id="daymod" name="day" class="form-control" type="number" maxlength="75" th:value="${freeDaysform.freeDay}" th:field="${freeDaysform.freeDay}"></input>
+											<label style="width:50%">Miesiąc: </label>
+											<input id="monthmod" name="month" class="form-control" type="number" maxlength="75" th:value="${freeDaysform.freeMonth}" th:field="${freeDaysform.freeMonth}"></input>
+											<label style="width:50%">Rok: </label>
+											<input id="yearmod" name="year" class="form-control" type="number" maxlength="75" th:value="${freeDaysform.freeYear}" th:field="${freeDaysform.freeYear}"></input>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -121,12 +127,12 @@
 						</div>
 					</div>
 				</div>
-				<!-- /Modify vacation type modal -->
+				<!-- /Modify free days modal -->
 				
 				
 				
 				
-				<!-- Add vacation type modal -->
+				<!-- Add free days modal -->
 				<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -134,33 +140,33 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</button>
-								<h4 class="modal-title custom_align" id="Heading">Dodaj Nowy Rodzaj Urlopu</h4>
+								<h4 class="modal-title custom_align" id="Heading">Dodaj Nowy Dzień Wolny</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/addvactype}" method="post">
+								<form action="#" th:action="@{/addfreedays}" method="post">
 									<div class="row">
 										<div class="form-group col-xs-6">
-											<label style="width:50%">Nazwa: </label>
-											<input id="vactypename_add" required="required" name="vactypename" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeName}" th:field="${vacationTypeform.vacTypeName}"></input>
-										</div>
-										<div class="form-group col-xs-6">
-											<label style="width:50%">Max ilość dni: </label>
-											<input id="vacmaxdays_add" required="required" name="vactypename" class="form-control" type="text" maxlength="75" th:value="${vacationTypeform.vacTypeMaxDays}" th:field="${vacationTypeform.vacTypeMaxDays}"></input>
+											<label style="width:50%">Dzień: </label>
+											<input id="dayadd" name="dayadd" class="form-control" type="number" maxlength="75" th:value="${freeDaysform.freeDay}" th:field="${freeDaysform.freeDay}"></input>
+											<label style="width:50%">Miesiąc: </label>
+											<input id="monthadd" name="monthadd" class="form-control" type="number" maxlength="75" th:value="${freeDaysform.freeMonth}" th:field="${freeDaysform.freeMonth}"></input>
+											<label style="width:50%">Rok: </label>
+											<input id="yearadd" name="yearadd" class="form-control" type="number" maxlength="75" th:value="${freeDaysform.freeYear}" th:field="${freeDaysform.freeYear}"></input>
 										</div>
 									</div>
 									<div class="modal-footer">
-										<input type="submit" class="btn btn-warning btn-lg" value="Dodaj pracownika" />
+										<input type="submit" class="btn btn-warning btn-lg" value="Dodaj dzień wolny" />
 									</div>
 								</form> 
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /Add vacation type modal -->
+				<!-- /Add free days modal -->
 				
 				
 				
-				<!-- Delete vacation type modal -->
+				<!-- Delete free days modal -->
 				<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -169,16 +175,16 @@
 									aria-hidden="true">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</button>
-								<h4 class="modal-title custom_align" id="Heading">Usuń wybrany rodzaj urlopu</h4>
+								<h4 class="modal-title custom_align" id="Heading">Usuń wybrany dzień wolny</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/deletevactype}" method="post">
+								<form action="#" th:action="@{/deletefreedays}" method="post">
 									<div class="alert alert-danger">
 										<span class="glyphicon glyphicon-warning-sign"></span> Jesteś
-										pewien, że chcesz usunąć ten typ urlopu?
+										pewien, że chcesz usunąć ten dzień wolny?
 									</div>
 									<div class="form-group col-xs-6">
-										<input style="display:none" id="vacIDdelete" class="form-control" type="text" maxlength="4" th:value="${vacationTypeform.id}" th:field="${vacationTypeform.id}"></input>
+										<input style="display:none" id="freeidToDelete" class="form-control" type="text" maxlength="4" th:value="${freeDaysform.id}" th:field="${freeDaysform.id}"></input>
 									</div>
 									<div class="modal-footer ">
 										<input type="submit" class="btn btn-success" value="Tak" />
@@ -191,7 +197,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- Delete vacation type modal -->
+				<!-- Delete free days modal -->
 
 
 
@@ -230,24 +236,27 @@
 	});
 </script>
 <script>
-	$(document).on("click", ".open-ModifyVacationTypeDialog", function(e) {
+	$(document).on("click", ".open-ModifyFreeDaysDialog", function(e) {
 		e.preventDefault();
 		var _self = $(this);
 
-		var vacID = _self.data('id');
-		$("#vactypeId").val(vacID);
+		var freeID = _self.data('id');
+		$("#freeDayId").val(freeID);
 		
-		var vacName = $('#name' + vacID).text();
-		$("#vactypeName").val(vacName);
+		var freeD = $('#day' + freeID).text();
+		$("#daymod").val(freeD);
 		
-		var vacDays = $('#maxdays' + vacID).text();
-		$("#vactypeMaxDays").val(vacDays);
+		var freeM = $('#month' + freeID).text();
+		$("#monthmod").val(freeM);
+		
+		var freeY = $('#year' + freeID).text();
+		$("#yearmod").val(freeY);
 
 		$(_self.attr('href')).modal('show');
 	});
 </script>
 <script>
-	$(document).on("click", ".open-AddVacationTypeDialog", function(e) {
+	$(document).on("click", ".open-AddFreeDaysDialog", function(e) {
 		e.preventDefault();
 		var _self = $(this);
 
@@ -255,12 +264,12 @@
 	});
 </script>
 <script>
-	$(document).on("click", ".open-DeleteVacationTypeDialog", function(e) {
+	$(document).on("click", ".open-DeleteFreeDaysDialog", function(e) {
 		e.preventDefault();
 		var _self = $(this);
 
-		var vacID = _self.data('id');
-		$("#vacIDdelete").val(vacID);
+		var freeID = _self.data('id');
+		$("#freeidToDelete").val(freeID);
 		
 		$(_self.attr('href')).modal('show');
 	});

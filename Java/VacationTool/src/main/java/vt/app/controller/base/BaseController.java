@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
+import vt.app.services.FreeDaysService;
 import vt.app.services.PositionService;
 import vt.app.services.VacationTypeService;
 import vt.db.model.entity.Department;
@@ -15,6 +16,7 @@ public abstract class BaseController {
 	protected DepartmentService dept = new DepartmentService();
 	protected PositionService pos = new PositionService();
 	protected VacationTypeService vacType = new VacationTypeService();
+	protected FreeDaysService freeDays = new FreeDaysService();
 	protected int departmentId, managerId = 0;
 	
 	
