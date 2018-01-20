@@ -43,7 +43,6 @@ public class EmployeeService {
 	
 	
 	
-	
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}

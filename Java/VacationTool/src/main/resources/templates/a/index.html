@@ -41,31 +41,24 @@
 									<div class="box-body">
 										<div class="col-sm-6">
 											<div align="center">
-												<img alt="User Pic"
-													src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-													id="profile-image1" class="img-circle img-responsive"></img>
 
-												<input id="profile-image-upload" class="hidden" type="file"></input>
-												<div style="color: #999;">zmień zdjęcie...</div>
-												<!--Upload Image Js And Css-->
-												<div class="btn-group">
-													<button type="button" class="btn btn-primary">
-														Social</button>
-													<button type="button"
-														class="btn btn-primary dropdown-toggle"
-														data-toggle="dropdown">
-														<span class="caret"></span><span class="sr-only">Social</span>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#">Twitter</a></li>
-														<li><a
-															href="https://plus.google.com/+Jquery2dotnet/posts">Google
-																+</a></li>
-														<li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-														<li class="divider"></li>
-														<li><a href="#">Github</a></li>
-													</ul>
+
+												<div>
+													<img id="profile-image1" class="img-circle img-responsive" alt="Avatar" 
+														th:src="@{'data:image/png;charset=utf-8;base64,'+${employee.empAvatar}}" />
 												</div>
+												<div style="color: #999;">Wymagania zdjęcia: 150x150 PNG</div>
+												<form id="uploadImage" method="POST" action="#" th:action="@{/upload}" enctype="multipart/form-data">
+													<input style="display:none" id="empId" class="form-control" type="text" maxlength="4" th:value="${emp.id}" th:field="${emp.id}"></input>
+													<input id="profile-image-upload" class="hidden" type="file" name="file"></input>
+													<input id="submitImage" type="submit" value="Wybrałeś zdjęcie? To je ustaw!" class="btn btn-success" /> 
+												</form>	
+													
+													
+													
+													
+												
+												
 
 
 
@@ -86,8 +79,8 @@
 										<div class="clearfix"></div>
 										<div><h4>Dane personalne</h4></div>
 										<hr style="margin: 5px 0 5px 0;"></hr>
-
-
+										
+										<div th:attr="id='employeeId'" style="display:none" class="col-sm-7 col-xs-6 "><span th:text="${employee.id}"></span></div>
 										<div class="col-sm-5 col-xs-6 tital ">Imie:</div>
 										<div class="col-sm-7 col-xs-6 "><span th:text="${employee.empFirstName}"></span></div>
 										<div class="clearfix"></div>
@@ -190,11 +183,16 @@
 </script>
 <script>
 	$(function() {
+		$('#submitImage').prop('disabled', true);
 		$('#profile-image1').on('click', function() {
 			$('#profile-image-upload').click();
+			$('#submitImage').prop('disabled', false);
+			
+			var empID = $('#employeeId').text();
+			$("#empId").val(empID);
 		});
 	});
-</script>
+</script> 
 <!--  -->
 <!--  -->
 </html>

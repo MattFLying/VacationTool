@@ -1,7 +1,15 @@
 package vt.app.controller.base;
 
+import java.io.IOException;
+import java.util.Base64;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
 import vt.app.services.FreeDaysService;
@@ -19,7 +27,22 @@ public abstract class BaseController {
 	protected FreeDaysService freeDays = new FreeDaysService();
 	protected int departmentId, managerId = 0;
 	
-	
+	public ModelAndView uploadAvatar(MultipartFile file, Employee employee, String page) {
+		byte[] bytes = null;
+		try {
+			Employee entity = emp.getEmp().findById(employee.getId());
+			bytes = file.getBytes();
+			
+			byte[] encodeBase64 = Base64.getEncoder().encode(bytes);
+			String base64Encoded = new String(encodeBase64, "UTF-8");
+			
+			entity.setEmpAvatar(base64Encoded.trim());
+			emp.getEmp().update(entity);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:" + page + "/index");
+	}
 	protected void buildMainPanel(HttpSession session, Model model, String username) {
 		session.setAttribute("username", username);
 		
