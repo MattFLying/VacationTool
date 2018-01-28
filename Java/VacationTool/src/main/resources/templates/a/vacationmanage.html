@@ -103,12 +103,13 @@
 																				<td th:attr="id='vacName' + ${vacation.id}" width="50"><span th:text="${vacType.getVacationTypeById(vacation.vacType).vacTypeName}"></span></td>
 																				<td th:attr="id='vacyear' + ${vacation.id}" width="50"><span th:text="${vacation.vacYear}"></span></td>
 																				<td th:attr="id='vacleft' + ${vacation.id}" width="50"><span th:text="${vacation.vacDaysLeft} + '/' + ${vacType.getVacationTypeById(vacation.vacType).vacTypeMaxDays}"></span></td>
+																				<td style="display:none" th:attr="id='vacdaysleft' + ${vacation.id}" width="50"><span th:text="${vacation.vacDaysLeft}"></span></td>
 																				<td style="width: 20%">
 
 																					
 																					<div class="col-md-2">
 																						<p data-placement="top" data-toggle="tooltip" title="Edytuj">
-																							<button class="open-ModifyVacationDialog btn btn-primary btn-xs" data-title="Edytuj" data-toggle="modal" data-target="#edit" th:attr="data-id=${employee.empEvidenceNumber}">
+																							<button class="open-ModifyVacationDialog btn btn-primary btn-xs" data-title="Edytuj" data-toggle="modal" data-target="#edit" th:attr="data-id=${vacation.id}">
 																								<span class="glyphicon glyphicon-pencil"></span>
 																							</button>
 																						</p>
@@ -132,9 +133,6 @@
 											</div>
 										</td>
 									</tr>
-									
-									
-									
 								</tbody>
 							</table>
 						</div>
@@ -154,19 +152,39 @@
 								<h4 class="modal-title custom_align" id="Heading">Edytuj Dane Rodzaju Urlopu</h4>
 							</div>
 							<div class="modal-body">
-								<!-- <form action="#" th:action="@{/modifyemployee}" method="post">
+								<form action="#" th:action="@{/modifyvacationmanage}" method="post">
 									<div class="row">
 										<div class="form-group col-xs-6">
-											<label style="width:50%">Imie: </label>
-											<input style="display:none" id="employeeId" class="form-control" type="text" maxlength="75" th:value="${employeeform.id}" th:field="${employeeform.id}"></input>
-											<input style="display:none" id="pwdId" class="form-control" type="text" maxlength="75" th:value="${employeeform.empPassword}" th:field="${employeeform.empPassword}"></input>
-											<input id="empFirstName" name="empFirstName" class="form-control" type="text" maxlength="75" th:value="${employeeform.empFirstName}" th:field="${employeeform.empFirstName}"></input>
+											<input style="display:none" id="modvacId" class="form-control" type="text" maxlength="75" th:value="${vacationform.id}" th:field="${vacationform.id}"></input>
+											<input style="display:none" id="modemployeeId" class="form-control" type="text" maxlength="75" th:value="${vacationform.vacEmployeeId}" th:field="${vacationform.vacEmployeeId}"></input>
+											
+											<div class="form-group col-xs-12">
+												<label style="width:50%">Rodzaj urlopu:</label>
+												<input id="vactypeMod" class="form-control" type="text" th:value="${vacationform.vacType}" disabled="disabled"></input>
+												<select id="vactype_mod" class="form-control" th:field="${vacationform.vacType}" required="required">
+													<option id="modvacTypeSelected" th:value="0">Wybierz...</option>
+													<option th:each="vac_type : ${vacType.getAllVacationTypes()}"  
+														th:value="${vac_type.id}" 
+														th:text="${vac_type.vacTypeName}">
+													</option>
+												</select> 
+											</div>
+											
+											<div class="form-group col-xs-12">
+												<label style="width:50%">Rok: </label>
+												<input id="modyear" class="form-control" type="number" maxlength="4" th:value="${vacationform.vacYear}" th:field="${vacationform.vacYear}"></input>
+											</div>
+											
+											<div class="form-group col-xs-12">
+												<label style="width:50%">Pozostało: </label>
+												<input id="moddaysleft" class="form-control" type="number" maxlength="4" th:value="${vacationform.vacDaysLeft}" th:field="${vacationform.vacDaysLeft}"></input>
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
-										<input type="submit" class="btn btn-warning btn-lg" value="Zapisz zmiany" />
+										<input type="submit" class="btn btn-warning btn-lg" value="Edytuj urlop" />
 									</div>
-								</form> -->
+								</form> 
 							</div>
 						</div>
 					</div>
@@ -292,8 +310,20 @@
 		e.preventDefault();
 		var _self = $(this);
 
+		var vacID = _self.data('id');
+		$("#modvacId").val(vacID);
 		
-
+		var modyear = $('#vacyear' + vacID).text();
+		$("#modyear").val(modyear);
+		
+		var moddaysleft = $('#vacdaysleft' + vacID).text();
+		$("#moddaysleft").val(moddaysleft);
+		
+		var vactypeMod = $('#vacName' + vacID).text();
+		$("#vactypeMod").val(vactypeMod);
+		
+		
+		
 		$(_self.attr('href')).modal('show');
 	});
 </script>
@@ -305,7 +335,8 @@
 		var empID = _self.data('id');
 		$("#employeeId").val(empID);
 		
-		
+		var vacID = $('#vacName' + empEvidenceNumber).text();
+		$("#employeeId").val(vacID);"id='vacName' + ${vacation.id}"
 
 		$(_self.attr('href')).modal('show');
 	});

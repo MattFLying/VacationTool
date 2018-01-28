@@ -222,10 +222,6 @@ public class AdminController extends BaseController {
 		}
 		return new ModelAndView("redirect:a/freedays");
 	}
-	
-	
-	
-	
 	@RequestMapping(value = "/a/vacationmanage", method = RequestMethod.GET)
 	public ModelAndView vacationManage(HttpSession session, Model model) {
 		List<Employee> employees = emp.getEmp().findAll(Employee.class);
@@ -236,8 +232,6 @@ public class AdminController extends BaseController {
 		model.addAttribute("pos", pos);
 		model.addAttribute("vac", vacations);
 		model.addAttribute("vacType", vacType);
-		
-		
 		
 		return new ModelAndView("a/vacationmanage");
 	}
@@ -264,8 +258,28 @@ public class AdminController extends BaseController {
 		}
 		return new ModelAndView("redirect:a/vacationmanage");
 	}
+	@RequestMapping(value = "/modifyvacationmanage", method = RequestMethod.POST)
+	public ModelAndView modifyVacationManage(@ModelAttribute(value = "vacationform") Vacation vacation) {
+		try {
+			Vacation v = vacations.getVacationById(vacation.getId());
+			vacation.setVacEmployeeId(v.getVacEmployeeId());
+			
+			if(vacation.getVacType() == 0) {
+				vacation.setVacType(v.getVacType());
+			}
+			
+			vacations.getVac().update(vacation);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/vacationmanage");
+	}
 	
 
+	
+	
+	
+	
 	
 	
 	
