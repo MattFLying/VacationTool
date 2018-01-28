@@ -14,6 +14,7 @@ import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
 import vt.app.services.FreeDaysService;
 import vt.app.services.PositionService;
+import vt.app.services.VacationService;
 import vt.app.services.VacationTypeService;
 import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
@@ -25,6 +26,7 @@ public abstract class BaseController {
 	protected PositionService pos = new PositionService();
 	protected VacationTypeService vacType = new VacationTypeService();
 	protected FreeDaysService freeDays = new FreeDaysService();
+	protected VacationService vacations = new VacationService();
 	protected int departmentId, managerId = 0;
 	
 	public ModelAndView uploadAvatar(MultipartFile file, Employee employee, String page) {

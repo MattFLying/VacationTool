@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!--  -->
+<!--  -->
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<title>System Zarządzający Wnioskami Urlopowymi - Dział Kadr</title>
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script> 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script> 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/pl.js"></script> 
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css"/>
+	<link rel="stylesheet" href="/css/vacationtool.css"></link>
+</head>
+<!--  -->
+<!--  -->
+<body class="bodyColor">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-lg-2">
+			<!--  Navbar -->
+				<div id="navbaradmin"></div>
+			<!--  Navbar -->
+			</div>
+			<div class="col-sm-9 col-lg-10">
+			<!--  Content -->
+
+
+
+				<div class="container">
+					<h1>Szczegółowa lista urlopów pracowników</h1>
+					<hr></hr>
+					<div class="row">
+						<div class="panel panel-primary filterable">
+							<div style="height: 50px;padding:0" class="panel-heading">
+								<br></br>
+								<h2 class="panel-title"> Rodzaje urlopów pracowników</h2>
+							</div>
+							<table id="mytable" class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<td colspan="7">
+											<div class="col-lg-12">
+												<input type="search" class="form-control" id="input-search" placeholder="Szukaj typ urlopu"></input>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="50"><span>ID</span></td>
+										<td width="150"><span>Numer ewidencyjny</span></td>
+										<td width="250"><span>Imie</span></td>
+										<td width="250"><span>Nazwisko</span></td>
+										<td width="250"><span>Wydział</span></td>
+										<td width="250"><span>Pozycja</span></td>
+										<td width="250"><span>Operacje</span></td>
+									</tr>
+								</thead>
+								<tbody class="searchable-container" th:each="employee : ${employees}">
+									<tr class="items clickable" data-toggle="collapse" th:attr="data-target='.' + ${employee.empEvidenceNumber}">
+										<td th:attr="id='id' + ${employee.empEvidenceNumber}" width="50"><span th:text="${employee.id}"></span></td>
+										<td th:attr="id='evnumber' + ${employee.empEvidenceNumber}" width="50"><span th:text="${employee.empEvidenceNumber}"></span></td>
+										<td th:attr="id='firstn' + ${employee.empEvidenceNumber}"><span th:text="${employee.empFirstName}"></span></td>
+										<td th:attr="id='lastn' + ${employee.empEvidenceNumber}"><span th:text="${employee.empLastName}"></span></td>
+										<td th:attr="id='dep' + ${employee.empEvidenceNumber}"><span th:text="${dept.getDepartmentById(employee.empDepartmentId).depName}"></span></td>
+										<td th:attr="id='pos' + ${employee.empEvidenceNumber}"><span th:text="${pos.getPositionById(employee.empPositionId).positionName}"></span></td>
+										<td>
+											<div class="pull-right">
+												<button class="open-AddVacationDialog btn btn-success" data-title="Dodaj" data-toggle="modal" data-target="#add" th:attr="data-id=${employee.id}">Dodaj urlop</button>
+											</div>
+										</td>
+									</tr>
+									
+									
+									<tr th:attr="class='collapse ' + ${employee.empEvidenceNumber}">
+										<td colspan="6">
+											<div class="panel-body">
+												<div class="row">
+													Lista dostępnych urlopów:
+
+														<div class="span7">
+															<div class="widget stacked widget-table action-table">
+																<div class="widget-content">
+
+																	<table class="table table-striped table-bordered" style="width: 50%">
+																		<thead>
+																			<tr>
+																				<th>ID</th>
+																				<th>Rodzaj</th>
+																				<th>Rok</th>
+																				<th>Pozostało</th>
+																				<th>Operacje</th>
+																			</tr>
+																		</thead>
+																		<tbody th:each="vacation : ${vac.getAllVacationsByEmployeeId(employee.id)}">
+																			<tr>
+																				<td style="width: 5%" th:attr="id='id' + ${vacation.id}" width="50"><span th:text="${vacation.id}"></span></td>
+																				<td th:attr="id='vacName' + ${vacation.id}" width="50"><span th:text="${vacType.getVacationTypeById(vacation.vacType).vacTypeName}"></span></td>
+																				<td th:attr="id='vacyear' + ${vacation.id}" width="50"><span th:text="${vacation.vacYear}"></span></td>
+																				<td th:attr="id='vacleft' + ${vacation.id}" width="50"><span th:text="${vacation.vacDaysLeft} + '/' + ${vacType.getVacationTypeById(vacation.vacType).vacTypeMaxDays}"></span></td>
+																				<td style="width: 20%">
+
+																					
+																					<div class="col-md-2">
+																						<p data-placement="top" data-toggle="tooltip" title="Edytuj">
+																							<button class="open-ModifyVacationDialog btn btn-primary btn-xs" data-title="Edytuj" data-toggle="modal" data-target="#edit" th:attr="data-id=${employee.empEvidenceNumber}">
+																								<span class="glyphicon glyphicon-pencil"></span>
+																							</button>
+																						</p>
+																					</div>
+																					<div class="col-md-2">
+																						<p data-placement="top" data-toggle="tooltip" title="Usuń">
+																							<button class="open-DeleteVacationDialog btn btn-danger btn-xs" data-title="Usuń" data-toggle="modal" data-target="#delete" th:attr="data-id=${vacation.id}">
+																								<span class="glyphicon glyphicon-trash"></span>
+																							</button>
+																						</p>
+																					</div>
+
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+									
+									
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- Modify vacation modal -->
+				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+								<h4 class="modal-title custom_align" id="Heading">Edytuj Dane Rodzaju Urlopu</h4>
+							</div>
+							<div class="modal-body">
+								<!-- <form action="#" th:action="@{/modifyemployee}" method="post">
+									<div class="row">
+										<div class="form-group col-xs-6">
+											<label style="width:50%">Imie: </label>
+											<input style="display:none" id="employeeId" class="form-control" type="text" maxlength="75" th:value="${employeeform.id}" th:field="${employeeform.id}"></input>
+											<input style="display:none" id="pwdId" class="form-control" type="text" maxlength="75" th:value="${employeeform.empPassword}" th:field="${employeeform.empPassword}"></input>
+											<input id="empFirstName" name="empFirstName" class="form-control" type="text" maxlength="75" th:value="${employeeform.empFirstName}" th:field="${employeeform.empFirstName}"></input>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<input type="submit" class="btn btn-warning btn-lg" value="Zapisz zmiany" />
+									</div>
+								</form> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Modify vacation modal -->
+				
+				
+				
+				<!-- Delete vacation modal -->
+				<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+								<h4 class="modal-title custom_align" id="Heading">Usuń wybrany urlop</h4>
+							</div>
+							<div class="modal-body">
+								<form action="#" th:action="@{/deletevacationmanage}" method="post">
+									<div class="alert alert-danger">
+										<span class="glyphicon glyphicon-warning-sign"></span> Jesteś
+										pewien, że chcesz usunąć ten rodzaj urlopu dla pracownika?
+									</div>
+									<div class="form-group col-xs-6">
+										<input style="display:none" id="idToDelete" class="form-control" type="text" maxlength="4" th:value="${vacationform.id}" th:field="${vacationform.id}"></input>
+									</div>
+									<div class="modal-footer ">
+										<input type="submit" class="btn btn-success" value="Tak" />
+										<button type="button" class="btn btn-default" data-dismiss="modal">
+											<span class="glyphicon glyphicon-remove"></span> Nie
+										</button>
+									</div>
+								</form> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Delete vacation modal -->
+
+				<!-- Add vacation modal -->
+				<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+								<h4 class="modal-title custom_align" id="Heading">Dodaj Nowy Urlop</h4>
+							</div>
+							<div class="modal-body">
+								<form action="#" th:action="@{/addvacationmanage}" method="post">
+									<div class="row">
+										<div class="form-group col-xs-6">
+											<input style="display:none" id="employeeId" class="form-control" type="text" maxlength="75" th:value="${vacationform.vacEmployeeId}" th:field="${vacationform.vacEmployeeId}"></input>
+											
+											<div class="form-group col-xs-12">
+												<label style="width:50%">Rodzaj urlopu:</label>
+												<select id="vactype_add" class="form-control" th:field="${vacationform.vacType}" required="required">
+													<option id="vacTypeSelected" th:value="0">Wybierz...</option>
+													<option th:each="vac_type : ${vacType.getAllVacationTypes()}"  
+														th:value="${vac_type.id}" 
+														th:text="${vac_type.vacTypeName}">
+													</option>
+												</select> 
+											</div>
+											
+											<div class="form-group col-xs-12">
+												<label style="width:50%">Rok: </label>
+												<input id="daysleft" class="form-control" type="number" maxlength="4" th:value="${vacationform.vacYear}" th:field="${vacationform.vacYear}"></input>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<input type="submit" class="btn btn-warning btn-lg" value="Dodaj urlop" />
+									</div>
+								</form> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Add vacation modal -->
+				
+				
+
+
+				<!--  Content -->
+				</div>
+			</div>
+		
+	</div>
+
+	
+</body>
+<!--  -->
+<!--  -->
+<script>
+	$(function() {
+		$("#navbaradmin").load("/core/admin/navbar.html");
+	});
+</script>
+<script>
+	$(function() {
+		$('#profile-image1').on('click', function() {
+			$('#profile-image-upload').click();
+		});
+	});
+</script>
+<script>
+	$(function() {
+		$('#input-search').on('keyup', function() {
+			var rex = new RegExp($(this).val(), 'i');
+			$('.searchable-container .items').hide();
+			$('.searchable-container .items').filter(function() {
+				return rex.test($(this).text());
+			}).show();
+		});
+	});
+</script>
+<script>
+	$(document).on("click", ".open-ModifyVacationDialog", function(e) {
+		e.preventDefault();
+		var _self = $(this);
+
+		
+
+		$(_self.attr('href')).modal('show');
+	});
+</script>
+<script>
+	$(document).on("click", ".open-AddVacationDialog", function(e) {
+		e.preventDefault();
+		var _self = $(this);
+		
+		var empID = _self.data('id');
+		$("#employeeId").val(empID);
+		
+		
+
+		$(_self.attr('href')).modal('show');
+	});
+</script>
+<script>
+	$(document).on("click", ".open-DeleteVacationDialog", function(e) {
+		e.preventDefault();
+		var _self = $(this);
+
+		var empID = _self.data('id');
+		$("#idToDelete").val(empID);
+		
+		$(_self.attr('href')).modal('show');
+	});
+</script>
+<!--  -->
+<!--  -->
+</html>

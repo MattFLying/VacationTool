@@ -36,8 +36,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 			return 0;
 		} finally {
-			session.clear();
-			session.close();
+			if(session.isConnected()) {
+				session.clear();
+				session.close();
+			}
 		}
 	}
 	public int update(T entity) throws HibernateException {
@@ -54,8 +56,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 			return 0;
 		} finally {
-			session.clear();
-			session.close();
+			if(session.isConnected()) {
+				session.clear();
+				session.close();
+			}
 		}
 	}
 	public int delete(T entity) throws HibernateException {
@@ -72,8 +76,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 			return 0;
 		} finally {
-			session.clear();
-			session.close();
+			if(session.isConnected()) {
+				session.clear();
+				session.close();
+			}
 		}
 	}
 	public int deleteAll(List<T> entities) throws HibernateException {
@@ -92,8 +98,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 			return 0;
 		} finally {
-			session.clear();
-			session.close();
+			if(session.isConnected()) {
+				session.clear();
+				session.close();
+			}
 		}
 	}
 	public T findById(int id) throws HibernateException {
@@ -117,8 +125,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			session.clear();
-			session.close();
+			if(session.isConnected()) {
+				session.clear();
+				session.close();
+			}
 		}
 		
 		return list;

@@ -20,6 +20,7 @@ import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
 import vt.db.model.entity.FreeDays;
 import vt.db.model.entity.Position;
+import vt.db.model.entity.Vacation;
 import vt.db.model.entity.VacationType;
 
 @Controller
@@ -225,8 +226,44 @@ public class AdminController extends BaseController {
 	
 	
 	
-	
-	
+	@RequestMapping(value = "/a/vacationmanage", method = RequestMethod.GET)
+	public ModelAndView vacationManage(HttpSession session, Model model) {
+		List<Employee> employees = emp.getEmp().findAll(Employee.class);
+		model.addAttribute("employees", employees);
+		model.addAttribute("employeeform", new Employee());
+		model.addAttribute("vacationform", new Vacation());
+		model.addAttribute("dept", dept);
+		model.addAttribute("pos", pos);
+		model.addAttribute("vac", vacations);
+		model.addAttribute("vacType", vacType);
+		
+		
+		
+		return new ModelAndView("a/vacationmanage");
+	}
+	@RequestMapping(value = "/addvacationmanage", method = RequestMethod.POST)
+	public ModelAndView addVacationManage(@ModelAttribute(value = "vacationform") Vacation vacation) {
+		try {
+			int vacTypeId = vacation.getVacType();
+			VacationType vacationType = vacType.getVacationTypeById(vacTypeId);
+			vacation.setVacDaysLeft(vacationType.getVacTypeMaxDays());
+			
+			vacations.getVac().save(vacation);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/vacationmanage");
+	}
+	@RequestMapping(value = "/deletevacationmanage", method = RequestMethod.POST)
+	public ModelAndView deleteVacationManage(@ModelAttribute(value = "vacationform") Vacation vacation) {
+		try {
+			vacations.getVac().delete(vacation);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/vacationmanage");
+	}
 	
 
 	
