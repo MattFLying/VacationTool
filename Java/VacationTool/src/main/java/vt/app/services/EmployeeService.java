@@ -33,6 +33,18 @@ public class EmployeeService {
 	public Employee getEmployeeNameSurnameById(int id) {
 		return this.emp.findByIdNameSurname(id);
 	}
+	public Employee getEmployeeDepartmentById(int id) {
+		return this.emp.findByIdDepartment(id);
+	}
+	public Employee getEmployeeAvatarById(int id) {
+		return this.emp.findByIdAvatar(id);
+	}
+	public Employee getEmployeePositionById(int id) {
+		return this.emp.findByIdPosition(id);
+	}
+	public Employee getManagerOfEmployeeById(int id) {
+		return this.emp.findByIdManager(id);
+	}
 	public List<Employee> getAllManagers() {
 		return this.emp.findAllManagers();
 	}

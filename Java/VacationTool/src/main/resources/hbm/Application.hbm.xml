@@ -29,6 +29,9 @@
 		<property name="appComment" type="string">
 			<column name="app_comment" />
 		</property>
+		<property name="appManagerComment" type="string">
+			<column name="app_manager_comment" />
+		</property>
 		<property name="appEmployeeId" type="java.lang.Integer">
 			<column name="app_employee_id" />
 		</property>
@@ -47,8 +50,8 @@
 		<property name="appModifiedDate" type="string">
 			<column name="app_modifiedDate" length="19" />
 		</property>
-		<property name="appStatus" type="java.lang.Integer">
-			<column name="app_status" />
+		<property name="appStatus" type="string">
+			<column name="app_status" length="20" />
 		</property>
 		<property name="appPdf" type="string">
 			<column name="app_pdf" />

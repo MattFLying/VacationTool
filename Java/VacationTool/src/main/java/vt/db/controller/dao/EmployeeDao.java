@@ -65,8 +65,91 @@ public class EmployeeDao extends GenericDao<Employee> implements IEmployee {
 		
 		return employee;
 	}
-	
-	
+
+	@Override
+	public Employee findByIdAvatar(int id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Employee employee = null;
+		
+		try {
+			List results = session.createCriteria(Employee.class).add(Restrictions.eq("id", id))
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("empAvatar"), "empAvatar"))
+					.setResultTransformer(Transformers.aliasToBean(Employee.class)).list();
+
+			employee = (Employee) results.get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return employee;
+	}
+	@Override
+	public Employee findByIdManager(int id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Employee employee = null;
+		
+		try {
+			List results = session.createCriteria(Employee.class).add(Restrictions.eq("id", id))
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("empManagerId"), "empManagerId"))
+					.setResultTransformer(Transformers.aliasToBean(Employee.class)).list();
+
+			employee = (Employee) results.get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return findByIdNameSurname(employee.getEmpManagerId());
+	}
+	@Override
+	public Employee findByIdPosition(int id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Employee employee = null;
+		
+		try {
+			List results = session.createCriteria(Employee.class).add(Restrictions.eq("id", id))
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("empPositionId"), "empPositionId"))
+					.setResultTransformer(Transformers.aliasToBean(Employee.class)).list();
+
+			employee = (Employee) results.get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return employee;
+	}
+	@Override
+	public Employee findByIdDepartment(int id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Employee employee = null;
+		
+		try {
+			List results = session.createCriteria(Employee.class).add(Restrictions.eq("id", id))
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("empDepartmentId"), "empDepartmentId"))
+					.setResultTransformer(Transformers.aliasToBean(Employee.class)).list();
+
+			employee = (Employee) results.get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return employee;
+	}
 
 	@Override
 	public List<Employee> findAllManagers() {

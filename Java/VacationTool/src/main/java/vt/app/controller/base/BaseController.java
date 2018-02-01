@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import vt.app.services.ApplicationService;
 import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
 import vt.app.services.FreeDaysService;
@@ -27,6 +28,7 @@ public abstract class BaseController {
 	protected VacationTypeService vacType = new VacationTypeService();
 	protected FreeDaysService freeDays = new FreeDaysService();
 	protected VacationService vacations = new VacationService();
+	protected ApplicationService apps = new ApplicationService();
 	protected int departmentId, managerId = 0;
 	
 	public ModelAndView uploadAvatar(MultipartFile file, Employee employee, String page) {

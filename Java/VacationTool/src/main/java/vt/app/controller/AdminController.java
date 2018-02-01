@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import vt.app.controller.base.BaseController;
+import vt.db.model.entity.Application;
 import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
 import vt.db.model.entity.FreeDays;
@@ -277,7 +278,18 @@ public class AdminController extends BaseController {
 	
 
 	
-	
+	@RequestMapping(value = "/a/application", method = RequestMethod.GET)
+	public ModelAndView application(HttpSession session, Model model) {
+		List<Application> applications = apps.getApp().findAll(Application.class);
+		model.addAttribute("applications", applications);
+		model.addAttribute("emp", emp);
+		model.addAttribute("dept", dept);
+		model.addAttribute("pos", pos);
+		model.addAttribute("vacType", vacType);
+		
+		
+		return new ModelAndView("a/application");
+	}
 	
 	
 	
