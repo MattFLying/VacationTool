@@ -30,7 +30,7 @@ public class EmployeeService {
 	public Employee getEmployeeById(int id) {
 		return this.emp.findById(id);
 	}
-	public Employee getEmployeeNameSurnameById(int id) {
+	public Employee getEmployeeNameSurnameById(Integer id) {
 		return this.emp.findByIdNameSurname(id);
 	}
 	public Employee getEmployeeDepartmentById(int id) {

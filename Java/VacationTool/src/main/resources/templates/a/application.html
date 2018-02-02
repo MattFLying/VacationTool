@@ -34,8 +34,51 @@
 
 
 				<div class="container">
-					<h1>Szczegółowa lista wszystkich wniosków</h1>
-					<hr></hr>
+				
+					<div>
+						<h2 class="display-3">
+							<strong>Szczegółowa lista wszystkich wniosków urlopowych</strong>
+						</h2>
+						<h4>Tutaj znajduje się lista wszystkich dostępnych wniosków urlopowych. Można przejrzeć wszystkie stare wnioski jak i obecne bez względu na
+						stopień weryfikacji, a także zaakceptować jeszcze nie rozpatrzone pozycje. Wyszukiwanie po każdej dostępnej kategorii wpisów pozwala na łatwe ich sortowanie.</h4>
+						<hr />
+						<span style="font-weight: bold;" data-toggle="collapse" data-target="#legend">Legenda(klik!)</span>
+						<div id="legend" class="collapse">
+							<div class="row">
+								<div class="col-md-1">
+									<img src="/img/base/accepted.png" class="img-responsive" alt="accept"></img>
+								</div>
+								<div class="col-md-11">
+									<span style="font-weight: bold;"> - Wniosek został zaakceptowany</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1">
+									<img src="/img/base/decline.png" class="img-responsive" alt="decline"></img>
+								</div>
+								<div class="col-md-11">
+									<span style="font-weight: bold;"> - Wniosek został odrzucony</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1">
+									<img src="/img/base/wait.png" class="img-responsive" alt="wait"></img>
+								</div>
+								<div class="col-md-11">
+									<span style="font-weight: bold;"> - Wniosek czeka na rozpatrzenie</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1">
+									<img src="/img/base/create.png" class="img-responsive" alt="time"></img>
+								</div>
+								<div class="col-md-11">
+									<span style="font-weight: bold;"> - Wniosek został utworzony</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="panel panel-primary filterable">
 							<div style="height: 50px;padding:0" class="panel-heading">
@@ -45,46 +88,32 @@
 							<table id="mytable" class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<td colspan="4">
+										<td colspan="6">
 											<div class="col-lg-12">
-												<input type="search" class="form-control" id="input-search" placeholder="Szukaj typ urlopu"></input>
-											</div>
-										</td>
-										<td colspan="1">
-											<div class="pull-right">
-												<button class="open-AddVacationTypeDialog btn btn-success" data-title="Dodaj" data-toggle="modal" data-target="#add">Dodaj urlop</button>
+												<input type="search" class="form-control" id="input-search" placeholder="Szukaj wniosku"></input>
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td width="50"><span>ID</span></td>
-										<td width="300"><span>Pracownik</span></td>
-										<td width="150"><span>Wydział</span></td>
-										<td width="150"><span>Status</span></td>
-										<td><span>Operacje</span></td>
+										<td width="80"><span>Pracownik</span></td>
+										<td width="80"><span>Kierownik</span></td>
+										<td width="80"><span>Wydział</span></td>
+										<td width="250"><span>Status</span></td>
 									</tr>
 								</thead>
 								<tbody class="searchable-container" th:each="app : ${applications}">
 									<tr class="items clickable" data-toggle="collapse" th:attr="data-target='.' + ${app.id}">
 										<td th:attr="id='id' + ${app.id}" width="50"><span th:text="${app.id}"></span></td>
 										<td th:attr="id='empname' + ${app.id}" width="50"><span th:text="${emp.getEmployeeNameSurnameById(app.appEmployeeId).getNameAndSurname()}"></span></td>
+										<td th:attr="id='manageremp' + ${app.id}" width="50"><span th:text="${emp.getEmployeeNameSurnameById(app.appManagerId).getNameAndSurname()}"></span></td>
 										<td th:attr="id='dept' + ${app.id}"><span th:text="${dept.getDepartmentById(emp.getEmployeeDepartmentById(app.appEmployeeId).empDepartmentId).depName}"></span></td>
-										<td th:attr="id='status' + ${app.id}"><span th:text="${app.appStatus}"></span></td>
-										<td width="20%">
-											<div class="col-md-6">
-												<p data-placement="top" data-toggle="tooltip" title="Edytuj">
-													<button class="open-ModifyVacationTypeDialog btn btn-primary btn-xs" data-title="Edytuj" data-toggle="modal" data-target="#edit" th:attr="data-id=${app.id}">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</p>
-											</div>
-											<div class="col-md-6">
-												<p data-placement="top" data-toggle="tooltip" title="Usuń">
-													<button class="open-DeleteVacationTypeDialog btn btn-danger btn-xs" data-title="Usuń" data-toggle="modal" data-target="#delete" th:attr="data-id=${app.id}">
-														<span class="glyphicon glyphicon-trash"></span>
-													</button>
-												</p>
-											</div>
+										<td th:attr="id='status' + ${app.id}">
+											<div th:switch="${app.appStatus}">
+												<p th:case="${T(vt.app.controller.base.ApplicationVerification).ACCEPTED.name()}"><span style="font-weight: bold;color:green" th:text="${apps.getStatusName(app.appStatus)}"></span></p>
+												<p th:case="${T(vt.app.controller.base.ApplicationVerification).DECLINED.name()}"><span style="font-weight: bold;color:red" th:text="${apps.getStatusName(app.appStatus)}"></span></p>
+												<p th:case="${T(vt.app.controller.base.ApplicationVerification).WAIT.name()}"><span style="font-weight: bold;color:orange" th:text="${apps.getStatusName(app.appStatus)}"></span></p>
+											</div> 
 										</td>
 									</tr>
 									
@@ -93,28 +122,61 @@
 										<td colspan="6">
 											<div class="panel-body">
 												<div class="row">
-													<div class="col-md-3 col-lg-3 " align="center">
+													<div class="col-md-3 col-lg-3" align="center">
+														
+														<span style="font-weight: bold;color:black" th:text="${pos.getPositionById(emp.getEmployeePositionById(app.appEmployeeId).empPositionId).positionName}"></span>
+														<span> w dziale </span>
+														<span style="font-weight: bold;color:black" th:text="${dept.getDepartmentById(emp.getEmployeeDepartmentById(app.appEmployeeId).empDepartmentId).depName}"></span>
+														
+														<hr />
 														<img id="profile-image1" class="img-circle img-responsive" alt="Avatar" 
 															th:src="@{'data:image/png;charset=utf-8;base64,'+${emp.getEmployeeAvatarById(app.appEmployeeId).empAvatar}}" />
+															<hr />
+															<span style="font-weight: bold;color:black" th:text="${emp.getEmployeeNameSurnameById(app.appEmployeeId).getNameAndSurname()}"></span>
+															<hr />
+															<div class="row">
+																<div class="col-md-8">
+																	<span class="pull-left" style="font-weight: bold;color:green">Zaakceptuj wniosek</span>
+																</div>
+																<div class="col-md-4">
+																	<p data-placement="top" data-toggle="tooltip" title="Zaakceptuj">
+																		<button class="open-DeleteVacationTypeDialog btn btn-xs" data-title="Zaakceptuj" data-toggle="modal" data-target="#accept" th:attr="data-id=${app.id}">
+																			<img src="/img/base/accepted.png" class="img-responsive" alt="accept"></img>
+																		</button>
+																	</p>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-8">
+																	<span class="pull-left" style="font-weight: bold;color:red">Odrzuć wniosek</span>
+																</div>
+																<div class="col-md-4">
+																	<p data-placement="top" data-toggle="tooltip" title="Odrzuć">
+																		<button class="open-DeleteVacationTypeDialog btn btn-xs" data-title="Odrzuć" data-toggle="modal" data-target="#decline" th:attr="data-id=${app.id}">
+																			<img src="/img/base/decline.png" class="img-responsive" alt="decline"></img>
+																		</button>
+																	</p>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-8">
+																	<span class="pull-left" style="font-weight: bold;color:black">Usuń wniosek</span>
+																</div>
+																<div class="col-md-4">
+																	<p data-placement="top" data-toggle="tooltip" title="Usuń">
+																		<button class="open-DeleteVacationTypeDialog btn btn-xs" data-title="Usuń" data-toggle="modal" data-target="#delete" th:attr="data-id=${app.id}">
+																			<img src="/img/base/delete.png" class="img-responsive" alt="delete"></img>
+																		</button>
+																	</p>
+																</div>
+															</div>
 													</div>
-													<div class=" col-md-9 col-lg-9 ">
+													<div class="col-md-9 col-lg-9">
 														<table class="table table-user-information">
 															<tbody>
 																<tr>
-																	<td>Pracownik</td>
-																	<td><span th:text="${emp.getEmployeeNameSurnameById(app.appEmployeeId).getNameAndSurname()}"></span></td>
-																</tr>
-																<tr>
-																	<td>Wydział</td>
-																	<td><span th:text="${dept.getDepartmentById(emp.getEmployeeDepartmentById(app.appEmployeeId).empDepartmentId).depName}"></span></td>
-																</tr>
-																<tr>
-																	<td>Stanowisko</td>
-																	<td><span th:text="${pos.getPositionById(emp.getEmployeePositionById(app.appEmployeeId).empPositionId).positionName}"></span></td>
-																</tr>
-																<tr>
 																	<td>Kierownik</td>
-																	<td><span th:text="${emp.getManagerOfEmployeeById(app.appEmployeeId).getNameAndSurname()}"></span></td>
+																	<td><span th:text="${emp.getEmployeeNameSurnameById(app.appManagerId).getNameAndSurname()}"></span></td>
 																</tr>
 																<tr>
 																	<td>Rodzaj urlopu</td>
@@ -133,23 +195,121 @@
 																	<td><span th:text="${app.appDays}"></span></td>
 																</tr>
 																<tr>
-																	<td>Utworzony</td>
-																	<td><span th:text="${app.appCreatedDate}"></span></td>
-																</tr>
-																<tr>
-																	<td>Komentarz pracownika</td>
-																	<td><span th:text="${app.appComment}"></span></td>
+																	<td>Zastępstwo</td>
+																	<td>
+																		<div th:switch="${app.appReplacement}">
+																			<div th:case="null">
+																				<span>brak</span>
+																			</div>
+																			<div th:case="*">
+																				<span th:text="${emp.getEmployeeNameSurnameById(app.appReplacement).getNameAndSurname()}"></span>
+																			</div>
+																		</div>
+																	</td>
 																</tr>
 															</tbody>
 														</table>
+														<div class="row">
+															<div class="col-sm-6">
+																<div><span style="font-weight: bold">Komentarz pracownika</span></div>
+																<hr />
+																<div><span th:text="${app.appComment}"></span></div>
+															</div>
+															<div class="col-sm-6">
+																<div><span style="font-weight: bold">Komentarz przełożonego</span></div>
+																<hr />
+																<div><span th:text="${app.appManagerComment}"></span></div>
+															</div>
+														</div>
+														
+														
 													</div>
+													<hr />
+													<div class="col-md-12 col-lg-12">
+													<div class="timeline-centered">
+
+															<div th:switch="${app.appStatus}">
+																<div th:case="${T(vt.app.controller.base.ApplicationVerification).ACCEPTED.name()}">
+																	<article class="timeline-entry">
+																		<div class="timeline-entry-inner">
+																			<div class="timeline-icon">
+																				<i class="entypo-flight"></i> 
+																				<img src="/img/base/accepted.png" class="img-responsive center-block" style="margin-top: 5px;" alt="accept"></img>
+																			</div>
+																			<div class="timeline-label">
+																				<h2>Wniosek został zaakceptowany przez przełożonego 
+																					<span style="font-weight: bold;color:black" th:text="${emp.getEmployeeNameSurnameById(app.appAcceptedManager).getNameAndSurname()}"></span>
+																				</h2>
+																				<i class="glyphicon glyphicon-time"></i>
+																				<span th:text="${app.appAcceptedDate}"></span>
+																			</div>
+																		</div>
+																	</article>
+																</div>
+																<div th:case="${T(vt.app.controller.base.ApplicationVerification).DECLINED.name()}">
+																	<article class="timeline-entry">
+																		<div class="timeline-entry-inner">
+																			<div class="timeline-icon">
+																				<i class="entypo-flight"></i> 
+																				<img src="/img/base/decline.png" class="img-responsive center-block" style="margin-top: 5px;" alt="accept"></img>
+																			</div>
+																			<div class="timeline-label">
+																				<h2>Wniosek został odrzucony przez przełożonego 
+																					<span style="font-weight: bold;color:black" th:text="${emp.getEmployeeNameSurnameById(app.appAcceptedManager).getNameAndSurname()}"></span>
+																				</h2>
+																				<i class="glyphicon glyphicon-time"></i>
+																				<span th:text="${app.appAcceptedDate}"></span>
+																			</div>
+																		</div>
+																	</article>
+																</div>
+															</div>
+																	<article class="timeline-entry">
+																		<div class="timeline-entry-inner">
+																			<div class="timeline-icon">
+																				<i class="entypo-flight"></i> 
+																				<img src="/img/base/wait.png" class="img-responsive center-block" style="margin-top: 5px;" alt="accept"></img>
+																			</div>
+																			<div class="timeline-label">
+																				<h2>Wniosek czeka na akceptację przez przełożonego 
+																					<span style="font-weight: bold;color:black" th:text="${emp.getEmployeeNameSurnameById(app.appManagerId).getNameAndSurname()}"></span>
+																				</h2>
+																				<i class="glyphicon glyphicon-time"></i>
+																				<span th:text="${app.appModifiedDate}"></span>
+																			</div>
+																		</div>
+																	</article>
+																	<article class="timeline-entry">
+																		<div class="timeline-entry-inner">
+																			<div class="timeline-icon">
+																				<i class="entypo-flight"></i> 
+																				<img src="/img/base/create.png" class="img-responsive center-block" style="margin-top: 5px;" alt="accept"></img>
+																			</div>
+																			<div class="timeline-label">
+																				<h2>Wniosek został utworzony przez 
+																					<span style="font-weight: bold;color:black" th:text="${emp.getEmployeeNameSurnameById(app.appEmployeeId).getNameAndSurname()}"></span>
+																				</h2>
+																				<i class="glyphicon glyphicon-time"></i>
+																				<span th:text="${app.appCreatedDate}"></span>
+																			</div>
+																		</div>
+																	</article>
+																	<article class="timeline-entry begin">
+																		<div class="timeline-entry-inner">
+																			<div class="timeline-icon">
+																				<i class="entypo-flight"></i> 
+																				<img src="/img/base/time.png" class="img-responsive center-block" style="margin-top: 5px;" alt="accept"></img>
+																			</div>
+																		</div>
+																	</article>
+																</div>
+													</div>
+													
+													
 												</div>
 											</div>
 										</td>
 									</tr>
-									
-									
-									
 								</tbody>
 							</table>
 						</div>

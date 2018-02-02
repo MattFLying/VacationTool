@@ -34,8 +34,14 @@
 
 
 				<div class="container">
-					<h1>Szczegółowa lista urlopów pracowników</h1>
-					<hr></hr>
+					<div>
+						<h2 class="display-3">
+							<strong>Szczegółowa lista możliwych urlopów dla pracowników</strong>
+						</h2>
+						<h4>Tutaj znajduje się lista wszystkich dostępnych urlopów dla każdego pracownika wraz z indywidualnymi danymi jak pozostały czas urlopu. Można przejrzeć ich dane, 
+						a także zmodyfikować czy usunąć. Wyszukiwanie po każdej dostępnej kategorii wpisów pozwala na łatwe ich sortowanie.</h4>
+						<hr />
+					</div>
 					<div class="row">
 						<div class="panel panel-primary filterable">
 							<div style="height: 50px;padding:0" class="panel-heading">
@@ -78,7 +84,7 @@
 									
 									
 									<tr th:attr="class='collapse ' + ${employee.empEvidenceNumber}">
-										<td colspan="6">
+										<td colspan="7">
 											<div class="panel-body">
 												<div class="row">
 													Lista dostępnych urlopów:

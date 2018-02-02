@@ -286,6 +286,7 @@ public class AdminController extends BaseController {
 		model.addAttribute("dept", dept);
 		model.addAttribute("pos", pos);
 		model.addAttribute("vacType", vacType);
+		model.addAttribute("apps", apps);
 		
 		
 		return new ModelAndView("a/application");

@@ -35,6 +35,9 @@
 		<property name="appEmployeeId" type="java.lang.Integer">
 			<column name="app_employee_id" />
 		</property>
+		<property name="appManagerId" type="java.lang.Integer">
+			<column name="app_manager" />
+		</property>
 		<property name="appCreatedDate" type="string">
 			<column name="app_createdDate" length="19" />
 		</property>
@@ -44,17 +47,11 @@
 		<property name="appAcceptedDate" type="string">
 			<column name="app_acceptedDate" length="19" />
 		</property>
-		<property name="appModifiedBy" type="java.lang.Integer">
-			<column name="app_modifiedBy" />
-		</property>
 		<property name="appModifiedDate" type="string">
 			<column name="app_modifiedDate" length="19" />
 		</property>
 		<property name="appStatus" type="string">
 			<column name="app_status" length="20" />
-		</property>
-		<property name="appPdf" type="string">
-			<column name="app_pdf" />
 		</property>
 		
 		

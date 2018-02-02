@@ -11,13 +11,12 @@ public class Application extends Entity {
 	private Integer appReplacement;
 	private String appComment;
 	private Integer appEmployeeId;
+	private Integer appManagerId;
 	private String appCreatedDate;
 	private Integer appAcceptedManager;
 	private String appAcceptedDate;
-	private Integer appModifiedBy;
 	private String appModifiedDate;
 	private String appStatus;
-	private String appPdf;
 	private String appManagerComment;
 	
 	
@@ -25,8 +24,8 @@ public class Application extends Entity {
 		super();
 	}
 	public Application(Integer appType, String appDateFrom, String appDateTo, Integer appDays, Integer appReplacement,
-			String appComment, Integer appEmployeeId, String appCreatedDate, Integer appAcceptedManager,
-			String appAcceptedDate, Integer appModifiedBy, String appModifiedDate, String appStatus, String appPdf, String appManagerComment) {
+			String appComment, Integer appEmployeeId, String appCreatedDate, Integer appAcceptedManager, Integer appManagerId,
+			String appAcceptedDate, String appModifiedDate, String appStatus, String appManagerComment) {
 		super();
 		this.appType = appType;
 		this.appDateFrom = appDateFrom;
@@ -38,11 +37,10 @@ public class Application extends Entity {
 		this.appCreatedDate = appCreatedDate;
 		this.appAcceptedManager = appAcceptedManager;
 		this.appAcceptedDate = appAcceptedDate;
-		this.appModifiedBy = appModifiedBy;
 		this.appModifiedDate = appModifiedDate;
 		this.appStatus = appStatus;
-		this.appPdf = appPdf;
-		this.setAppManagerComment(appManagerComment);
+		this.appManagerId = appManagerId;
+		this.appManagerComment = appManagerComment;
 	}
 	
 
@@ -106,12 +104,6 @@ public class Application extends Entity {
 	public void setAppAcceptedDate(String appAcceptedDate) {
 		this.appAcceptedDate = appAcceptedDate;
 	}
-	public Integer getAppModifiedBy() {
-		return this.appModifiedBy;
-	}
-	public void setAppModifiedBy(Integer appModifiedBy) {
-		this.appModifiedBy = appModifiedBy;
-	}
 	public String getAppModifiedDate() {
 		return this.appModifiedDate;
 	}
@@ -124,16 +116,16 @@ public class Application extends Entity {
 	public void setAppStatus(String appStatus) {
 		this.appStatus = appStatus;
 	}
-	public String getAppPdf() {
-		return this.appPdf;
-	}
-	public void setAppPdf(String appPdf) {
-		this.appPdf = appPdf;
-	}
 	public String getAppManagerComment() {
 		return appManagerComment;
 	}
 	public void setAppManagerComment(String appManagerComment) {
 		this.appManagerComment = appManagerComment;
+	}
+	public Integer getAppManagerId() {
+		return appManagerId;
+	}
+	public void setAppManagerId(Integer appManagerId) {
+		this.appManagerId = appManagerId;
 	}
 }
