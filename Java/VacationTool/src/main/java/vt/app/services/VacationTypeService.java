@@ -10,8 +10,6 @@ import vt.db.model.entity.VacationType;
 public class VacationTypeService {
 	private IVacationType vacType;
 	
-	
-
 
 	public VacationTypeService() {
 		this.vacType = new VacationTypeDao();
@@ -27,11 +25,4 @@ public class VacationTypeService {
 	public List<VacationType> getAllVacationTypes() {
 		return this.vacType.findAllVacationTypes();
 	}
-	
-	
-	
-	
-	
-	
-	
 }

@@ -2,22 +2,18 @@ package vt.db.controller.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-
 import vt.db.controller.dao.interfaces.IDepartment;
 import vt.db.model.dao.GenericDao;
 import vt.db.model.entity.Department;
-import vt.db.model.entity.Position;
 import vt.db.model.util.HibernateUtil;
 
 public class DepartmentDao extends GenericDao<Department> implements IDepartment {
-	
-	
 	public DepartmentDao() {
 		super();
 	}
+	
 	
 	@Override
 	public List<Department> findAllDepartments() {

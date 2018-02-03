@@ -2,17 +2,15 @@ package vt.app.services;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-
 import vt.app.controller.base.ApplicationVerification;
 import vt.db.controller.dao.ApplicationDao;
 import vt.db.controller.dao.interfaces.IApplication;
+import vt.db.model.entity.Application;
 
 @Service
 public class ApplicationService {
 	private IApplication app;
 	
-	
-
 
 	public ApplicationService() {
 		this.app = new ApplicationDao();
@@ -33,7 +31,12 @@ public class ApplicationService {
 			return null;
 		}
 	}
-	
+	public List<Application> findAllSortedByStatus() {
+		return this.app.findAllSortedByStatus();
+	}
+	public List<Application> findAllForManagerSortedByStatus(int managerId) {
+		return this.app.findAllSortedByStatusById(managerId);
+	}
 	
 	
 }

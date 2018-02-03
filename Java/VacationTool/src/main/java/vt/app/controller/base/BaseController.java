@@ -1,15 +1,13 @@
 package vt.app.controller.base;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
-
+import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import vt.app.services.ApplicationService;
 import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
@@ -22,6 +20,7 @@ import vt.db.model.entity.Employee;
 import vt.db.model.entity.Position;
 
 public abstract class BaseController {
+	protected HttpSession session = null;
 	protected EmployeeService emp = new EmployeeService();
 	protected DepartmentService dept = new DepartmentService();
 	protected PositionService pos = new PositionService();
@@ -53,6 +52,8 @@ public abstract class BaseController {
 		Employee employee = emp.getEmployeeByEvidenceNumberLogin(username);
 		model.addAttribute("employee", employee);
 		model.addAttribute("areaOfWork", formatAreaOfWork(employee.getEmpAreaOfWork()));
+		session.setAttribute("employeeId", employee.getId());
+		session.setAttribute("ownerName", employee.getNameAndSurname());
 		
 		Employee manager = emp.getEmployeeById(employee.getEmpManagerId());
 		model.addAttribute("manager", formatManager(manager, employee));
@@ -62,6 +63,8 @@ public abstract class BaseController {
 		
 		Department department = dept.getDepartmentById(employee.getEmpDepartmentId());
 		model.addAttribute("department", department);
+		
+		this.session = session;
 	}
 	protected String formatManager(Employee manager, Employee employee) {
 		if(manager.getId() == employee.getId()) {
@@ -82,5 +85,10 @@ public abstract class BaseController {
 		} else {
 			return String.valueOf(area);
 		}
+	}
+	protected String createDate() {
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
+		
+		return df.format(new Date());
 	}
 }

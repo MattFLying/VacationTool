@@ -1,7 +1,5 @@
 package vt.app.controller;
 
-import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.security.access.annotation.Secured;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import vt.app.controller.base.ApplicationVerification;
 import vt.app.controller.base.BaseController;
 import vt.db.model.entity.Application;
 import vt.db.model.entity.Department;
@@ -275,29 +274,56 @@ public class AdminController extends BaseController {
 		}
 		return new ModelAndView("redirect:a/vacationmanage");
 	}
-	
-
-	
 	@RequestMapping(value = "/a/application", method = RequestMethod.GET)
 	public ModelAndView application(HttpSession session, Model model) {
-		List<Application> applications = apps.getApp().findAll(Application.class);
+		List<Application> applications = apps.getApp().findAllSortedByStatus();
 		model.addAttribute("applications", applications);
 		model.addAttribute("emp", emp);
 		model.addAttribute("dept", dept);
 		model.addAttribute("pos", pos);
 		model.addAttribute("vacType", vacType);
 		model.addAttribute("apps", apps);
-		
+		model.addAttribute("applicationform", new Application());
 		
 		return new ModelAndView("a/application");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "/deleteapplication", method = RequestMethod.POST)
+	public ModelAndView deleteApplication(@ModelAttribute(value = "applicationform") Application application) {
+		try {
+			apps.getApp().delete(application);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/application");
+	}
+	@RequestMapping(value = "/declineapplication", method = RequestMethod.POST)
+	public ModelAndView declineApplication(@ModelAttribute(value = "applicationform") Application application) {
+		try {
+			Application a = apps.getApp().findById(application.getId());
+			a.setAppManagerComment(application.getAppManagerComment());
+			a.setAppStatus(ApplicationVerification.DECLINED.name());
+			a.setAppAcceptedDate(createDate());
+			a.setAppAcceptedManager((int)session.getAttribute("employeeId"));
+			
+			apps.getApp().update(a);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/application");
+	}
+	@RequestMapping(value = "/acceptapplication", method = RequestMethod.POST)
+	public ModelAndView acceptApplication(@ModelAttribute(value = "applicationform") Application application) {
+		try {
+			Application a = apps.getApp().findById(application.getId());
+			a.setAppManagerComment(application.getAppManagerComment());
+			a.setAppStatus(ApplicationVerification.ACCEPTED.name());
+			a.setAppAcceptedDate(createDate());
+			a.setAppAcceptedManager((int)session.getAttribute("employeeId"));
+			
+			apps.getApp().update(a);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:a/application");
+	}
 }

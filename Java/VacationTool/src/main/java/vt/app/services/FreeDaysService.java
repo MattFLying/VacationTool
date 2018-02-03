@@ -1,6 +1,5 @@
 package vt.app.services;
 
-import java.util.List;
 import org.springframework.stereotype.Service;
 import vt.db.controller.dao.FreeDaysDao;
 import vt.db.controller.dao.interfaces.IFreeDays;
@@ -9,8 +8,6 @@ import vt.db.controller.dao.interfaces.IFreeDays;
 public class FreeDaysService {
 	private IFreeDays freeDays;
 	
-	
-
 
 	public FreeDaysService() {
 		this.freeDays = new FreeDaysDao();
@@ -20,7 +17,6 @@ public class FreeDaysService {
 	public IFreeDays getFreeDays() {
 		return freeDays;
 	}
-	
 	public String getMonthName(int monthNumber) {
 		switch(monthNumber) {
 			case 1:
@@ -51,9 +47,4 @@ public class FreeDaysService {
 				return "none";
 		}
 	}
-	
-	
-	
-	
-	
 }

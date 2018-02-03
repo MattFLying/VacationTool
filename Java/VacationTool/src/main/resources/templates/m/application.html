@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-	<title>System Zarządzający Wnioskami Urlopowymi - Dział Kadr</title>
+	<title>System Zarządzający Wnioskami Urlopowymi - Kierownik</title>
 	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script> 
@@ -39,7 +39,7 @@
 						<h2 class="display-3">
 							<strong>Szczegółowa lista wszystkich wniosków urlopowych</strong>
 						</h2>
-						<h4>Tutaj znajduje się lista wszystkich dostępnych wniosków urlopowych. Można przejrzeć wszystkie stare wnioski jak i obecne bez względu na
+						<h4>Tutaj znajduje się lista wszystkich dostępnych dla Ciebie wniosków urlopowych. Można przejrzeć wszystkie stare wnioski jak i obecne bez względu na
 						stopień weryfikacji, a także zaakceptować jeszcze nie rozpatrzone pozycje. Wyszukiwanie po każdej dostępnej kategorii wpisów pozwala na łatwe ich sortowanie.</h4>
 						<hr />
 						<span style="font-weight: bold;" data-toggle="collapse" data-target="#legend">Legenda(klik!)</span>
@@ -91,11 +91,6 @@
 										<td colspan="5">
 											<div class="col-lg-12">
 												<input type="search" class="form-control" id="input-search" placeholder="Szukaj wniosku"></input>
-											</div>
-											<div class="pull-right">
-												<input style="display:none" id="ownerID" class="form-control" type="text" maxlength="4" th:value="${session.ownerName}"></input>
-												<input type="checkbox" class="form-check-input" id="ifMineApplications" />
-												<label class="form-check-label" for="ifMineApplications">Pokaż tylko do mnie</label>
 											</div>
 										</td>
 									</tr>
@@ -344,7 +339,7 @@
 								<h4 class="modal-title custom_align" id="Heading">Odrzuć wybrany wniosek urlopowy</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/declineapplication}" method="post">
+								<form action="#" th:action="@{/declineapplicationmanager}" method="post">
 									<div class="alert alert-danger">
 										<span class="glyphicon glyphicon-warning-sign"></span> Jesteś
 										pewien, że chcesz odrzucić ten wniosek urlopowy? <br />Jeśli tak zostaw komentarz dla pracownika.
@@ -380,7 +375,7 @@
 								<h4 class="modal-title custom_align" id="Heading">Zaakceptuj wybrany wniosek urlopowy</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/acceptapplication}" method="post">
+								<form action="#" th:action="@{/acceptapplicationmanager}" method="post">
 									<div class="alert alert-danger">
 										<span class="glyphicon glyphicon-warning-sign"></span> Jesteś
 										pewien, że chcesz zaakceptować ten wniosek urlopowy? <br />Jeśli tak zostaw komentarz dla pracownika.
@@ -417,7 +412,7 @@
 								<h4 class="modal-title custom_align" id="Heading">Usuń wybrany wniosek urlopowy</h4>
 							</div>
 							<div class="modal-body">
-								<form action="#" th:action="@{/deleteapplication}" method="post">
+								<form action="#" th:action="@{/deleteapplicationmanager}" method="post">
 									<div class="alert alert-danger">
 										<span class="glyphicon glyphicon-warning-sign"></span> Jesteś
 										pewien, że chcesz usunąć ten wniosek urlopowy?
@@ -453,7 +448,7 @@
 <!--  -->
 <script>
 	$(function() {
-		$("#navbaradmin").load("/core/admin/navbar.html");
+		$("#navbaradmin").load("/core/manager/navbar.html");
 	});
 </script>
 <script>
@@ -472,23 +467,6 @@
 				return rex.test($(this).text());
 			}).show();
 		});
-	});
-</script> 
-<script>
-	$(function() {
-		$("#ifMineApplications").click(function() {
-			if(this.checked){
-				var owner = $('#ownerID').val();
-				var rex = new RegExp(owner, 'g');
-				$('.searchable-container .items').hide();
-				$('.searchable-container .items').filter(function() {
-					return rex.test($(this).text());
-				}).show();
-	        }
-	        if(!this.checked){
-	        	$('.searchable-container .items').show();
-	        }
-		})
 	});
 </script> 
 <script>

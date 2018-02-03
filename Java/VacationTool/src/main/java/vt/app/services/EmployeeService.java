@@ -1,7 +1,6 @@
 package vt.app.services;
 
 import java.util.List;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,8 +12,6 @@ import vt.db.model.entity.Employee;
 public class EmployeeService {
 	private IEmployee emp;
 	
-	
-
 
 	public EmployeeService() {
 		this.emp = new EmployeeDao();
@@ -48,13 +45,6 @@ public class EmployeeService {
 	public List<Employee> getAllManagers() {
 		return this.emp.findAllManagers();
 	}
-	
-	
-	
-	
-	
-	
-	
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}

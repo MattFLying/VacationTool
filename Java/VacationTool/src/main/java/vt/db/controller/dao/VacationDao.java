@@ -5,15 +5,12 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-
 import vt.db.controller.dao.interfaces.IVacation;
 import vt.db.model.dao.GenericDao;
 import vt.db.model.entity.Vacation;
 import vt.db.model.util.HibernateUtil;
 
 public class VacationDao extends GenericDao<Vacation> implements IVacation {
-	
-	
 	public VacationDao() {
 		super();
 	}
@@ -58,6 +55,4 @@ public class VacationDao extends GenericDao<Vacation> implements IVacation {
 		
 		return vacations;
 	}
-	
-	
 }

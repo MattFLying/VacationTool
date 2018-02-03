@@ -3,9 +3,7 @@ package vt.db.controller.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
@@ -15,8 +13,6 @@ import vt.db.model.entity.Employee;
 import vt.db.model.util.HibernateUtil;
 
 public class EmployeeDao extends GenericDao<Employee> implements IEmployee {
-	
-	
 	public EmployeeDao() {
 		super();
 	}
@@ -42,7 +38,6 @@ public class EmployeeDao extends GenericDao<Employee> implements IEmployee {
 		
 		return employee;
 	}
-	
 	@Override
 	public Employee findByIdNameSurname(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -65,7 +60,6 @@ public class EmployeeDao extends GenericDao<Employee> implements IEmployee {
 		
 		return employee;
 	}
-
 	@Override
 	public Employee findByIdAvatar(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -150,7 +144,6 @@ public class EmployeeDao extends GenericDao<Employee> implements IEmployee {
 		
 		return employee;
 	}
-
 	@Override
 	public List<Employee> findAllManagers() {
 		Session session = HibernateUtil.getSessionFactory().openSession();

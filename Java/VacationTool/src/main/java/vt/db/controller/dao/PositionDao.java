@@ -11,12 +11,9 @@ import vt.db.model.entity.Position;
 import vt.db.model.util.HibernateUtil;
 
 public class PositionDao extends GenericDao<Position> implements IPosition {
-	
-	
 	public PositionDao() {
 		super();
 	}
-	
 	
 	
 	@Override
@@ -58,8 +55,4 @@ public class PositionDao extends GenericDao<Position> implements IPosition {
 		
 		return positions;
 	}
-	
-	
-	
-	
 }

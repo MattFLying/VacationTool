@@ -1,5 +1,7 @@
 package test;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +22,21 @@ import vt.db.model.entity.Position;
 public class Test {
 
 	public static void main(String[] args) {
+		
+		
+		Date d = new Date();
+		
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
+
+
+		String s1 = df.format(new Date());
+		String s2 = df.format(new Date());
+		
+		System.out.println(s1);
+		System.out.println(s2);
+		
+		
+		
 		/*EmployeeDao dao = new EmployeeDao();
 		
 		Employee e = dao.findByIdNameSurname(4);
@@ -32,10 +49,10 @@ public class Test {
 		for(Department d : ds.getAllDepartments()) {
 			System.out.println(d.getId());
 		}*/
-		PositionService ds = new PositionService();
+		/*PositionService ds = new PositionService();
 		for(Position d : ds.getAllPositionsForDepartment(2)) {
 			System.out.println(d.getId());
-		}
+		}*/
 		/*for(int i = 0; i < 10; i++) {
 			String s = passwordEncoder().encode("haslo");
 			System.out.println(s);

@@ -9,8 +9,6 @@ import vt.db.model.entity.Vacation;
 @Service
 public class VacationService {
 	private IVacation vac;
-	
-	
 
 
 	public VacationService() {
@@ -30,6 +28,4 @@ public class VacationService {
 	public List<Vacation> getAllVacationsByEmployeeId(int id) {
 		return this.vac.findAllVacationsByEmployeeId(id);
 	}
-	
-	
 }
