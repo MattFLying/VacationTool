@@ -18,7 +18,6 @@ import vt.app.controller.base.BaseController;
 import vt.db.model.entity.Application;
 import vt.db.model.entity.Department;
 import vt.db.model.entity.Employee;
-import vt.db.model.entity.FreeDays;
 import vt.db.model.entity.Position;
 import vt.db.model.entity.Vacation;
 import vt.db.model.entity.VacationType;
@@ -33,12 +32,17 @@ public class AdminController extends BaseController {
 		
 		buildMainPanel(session, model, username);
 		model.addAttribute("emp", new Employee());
+		model.addAttribute("pwdForm", new Employee());
 		
 		return new ModelAndView("a/index");
 	}
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ModelAndView uploadImage(@RequestParam("file") MultipartFile file, @ModelAttribute(value = "emp") Employee employee) {
 		return uploadAvatar(file, employee, "a");
+	}
+	@RequestMapping(value = "/changepassword", method = RequestMethod.POST)
+	public ModelAndView changePasswordAdmin(@ModelAttribute(value = "pwdForm") Employee employeePWD) {
+		return changePassword(employeePWD, "a");
 	}
 	
 	
@@ -186,42 +190,6 @@ public class AdminController extends BaseController {
 		}
 		return new ModelAndView("redirect:a/vacationtype");
 	}
-	@RequestMapping(value = "/a/freedays", method = RequestMethod.GET)
-	public ModelAndView freeDays(HttpSession session, Model model) {
-		List<FreeDays> freeDaysList = freeDays.getFreeDays().findAll(FreeDays.class);
-		model.addAttribute("freeDays", freeDaysList);
-		model.addAttribute("freeDaysform", new FreeDays());
-		model.addAttribute("freedayNames", freeDays);
-		
-		return new ModelAndView("a/freedays");
-	}
-	@RequestMapping(value = "/modifyfreedays", method = RequestMethod.POST)
-	public ModelAndView modifyFreeDays(@ModelAttribute(value = "vacationTypeform") FreeDays freeDay) {
-		try {
-			freeDays.getFreeDays().update(freeDay);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return new ModelAndView("redirect:a/freedays");
-	}
-	@RequestMapping(value = "/deletefreedays", method = RequestMethod.POST)
-	public ModelAndView deleteFreeDays(@ModelAttribute(value = "vacationTypeform") FreeDays freeDay) {
-		try {
-			freeDays.getFreeDays().delete(freeDay);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return new ModelAndView("redirect:a/freedays");
-	}
-	@RequestMapping(value = "/addfreedays", method = RequestMethod.POST)
-	public ModelAndView addFreeDays(@ModelAttribute(value = "vacationTypeform") FreeDays freeDay) {
-		try {
-			freeDays.getFreeDays().save(freeDay);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return new ModelAndView("redirect:a/freedays");
-	}
 	@RequestMapping(value = "/a/vacationmanage", method = RequestMethod.GET)
 	public ModelAndView vacationManage(HttpSession session, Model model) {
 		List<Employee> employees = emp.getEmp().findAll(Employee.class);
@@ -306,6 +274,12 @@ public class AdminController extends BaseController {
 			a.setAppAcceptedManager((int)session.getAttribute("employeeId"));
 			
 			apps.getApp().update(a);
+			
+			Vacation vacation = vacations.getfindVacationByEmployeeIdAndVacationType(a.getAppEmployeeId(), a.getAppType());
+			int currentDays = vacation.getVacDaysLeft();
+			
+			vacation.setVacDaysLeft(currentDays + a.getAppDays());
+			vacations.getVac().update(vacation);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -314,13 +288,27 @@ public class AdminController extends BaseController {
 	@RequestMapping(value = "/acceptapplication", method = RequestMethod.POST)
 	public ModelAndView acceptApplication(@ModelAttribute(value = "applicationform") Application application) {
 		try {
+			boolean daysLeftShouldBeChanged = false;
+			
 			Application a = apps.getApp().findById(application.getId());
+			if(a.getAppStatus().equals(ApplicationVerification.DECLINED.name())) {
+				daysLeftShouldBeChanged = true;
+			}
+			
 			a.setAppManagerComment(application.getAppManagerComment());
 			a.setAppStatus(ApplicationVerification.ACCEPTED.name());
 			a.setAppAcceptedDate(createDate());
 			a.setAppAcceptedManager((int)session.getAttribute("employeeId"));
 			
 			apps.getApp().update(a);
+			
+			if(daysLeftShouldBeChanged) {
+				Vacation vacation = vacations.getfindVacationByEmployeeIdAndVacationType(a.getAppEmployeeId(), a.getAppType());
+				int currentDays = vacation.getVacDaysLeft();
+				
+				vacation.setVacDaysLeft(currentDays - a.getAppDays());
+				vacations.getVac().update(vacation);
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -55,4 +55,27 @@ public class VacationDao extends GenericDao<Vacation> implements IVacation {
 		
 		return vacations;
 	}
+	@Override
+	public Vacation findVacationByEmployeeIdAndVacationType(int employeeId, int vacationType) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		Vacation vacation = null;
+		
+		try {
+			criteria = session.createCriteria(Vacation.class);
+			criteria.add(Restrictions.and(
+					Restrictions.eq("vacEmployeeId", employeeId),
+					Restrictions.eq("vacType", vacationType)
+			));
+
+			vacation = (Vacation)criteria.list().get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return vacation;
+	}
 }

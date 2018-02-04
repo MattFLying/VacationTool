@@ -54,4 +54,10 @@ public class EmployeeService {
 	public List<Employee> getAllEmployeesFromDepartmentWithoutId(int departmentId, int employeeId) {
 		return this.emp.findAllEmployeesFromDepartmentWithoutId(departmentId, employeeId);
 	}
+	public void changePassword(Employee employee, String oldPassword, String newPassword) {
+		String password = passwordEncoder().encode(newPassword);
+		
+		employee.setEmpPassword(password);
+		emp.update(employee);
+	}
 }

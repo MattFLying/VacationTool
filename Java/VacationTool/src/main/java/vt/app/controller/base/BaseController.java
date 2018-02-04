@@ -3,7 +3,10 @@ package vt.app.controller.base;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Random;
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import vt.app.services.ApplicationService;
 import vt.app.services.DepartmentService;
 import vt.app.services.EmployeeService;
-import vt.app.services.FreeDaysService;
 import vt.app.services.PositionService;
 import vt.app.services.VacationService;
 import vt.app.services.VacationTypeService;
@@ -25,12 +27,11 @@ public abstract class BaseController {
 	protected DepartmentService dept = new DepartmentService();
 	protected PositionService pos = new PositionService();
 	protected VacationTypeService vacType = new VacationTypeService();
-	protected FreeDaysService freeDays = new FreeDaysService();
 	protected VacationService vacations = new VacationService();
 	protected ApplicationService apps = new ApplicationService();
 	protected int departmentId, managerId = 0;
 	
-	public ModelAndView uploadAvatar(MultipartFile file, Employee employee, String page) {
+	protected ModelAndView uploadAvatar(MultipartFile file, Employee employee, String page) {
 		byte[] bytes = null;
 		try {
 			Employee entity = emp.getEmp().findById(employee.getId());
@@ -46,6 +47,21 @@ public abstract class BaseController {
 		}
 		return new ModelAndView("redirect:" + page + "/index");
 	}
+	protected ModelAndView changePassword(Employee employeePWD, String page) {
+		try {
+			String newPassword = employeePWD.getEmpFirstName();
+			String passwordToCompare = employeePWD.getEmpLastName();
+			
+			if(newPassword.equals(passwordToCompare)) {
+				Employee employee = emp.getEmployeeById((int)session.getAttribute("employeeId"));
+				
+				emp.changePassword(employee, employee.getEmpPassword(), newPassword);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:" + page + "/index");
+	}
 	protected void buildMainPanel(HttpSession session, Model model, String username) {
 		session.setAttribute("username", username);
 		
@@ -56,6 +72,7 @@ public abstract class BaseController {
 		session.setAttribute("ownerName", employee.getNameAndSurname());
 		session.setAttribute("ownerDepartment", employee.getEmpDepartmentId());
 		session.setAttribute("ownerPosition", employee.getEmpPositionId());
+		session.setAttribute("appManagerId", employee.getEmpManagerId());
 		
 		Employee manager = emp.getEmployeeById(employee.getEmpManagerId());
 		model.addAttribute("manager", formatManager(manager, employee));
@@ -92,5 +109,16 @@ public abstract class BaseController {
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
 		
 		return df.format(new Date());
+	}
+	protected String createModifiedDate() {
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
+		
+		Date oldDate = new Date();
+	    Calendar gcal = new GregorianCalendar();
+	    gcal.setTime(oldDate);
+	    gcal.add(Calendar.SECOND, new Random().nextInt(20));
+	    Date newDate = gcal.getTime();
+	    
+		return df.format(newDate);
 	}
 }

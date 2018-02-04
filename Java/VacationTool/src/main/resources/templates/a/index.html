@@ -42,7 +42,6 @@
 										<div class="col-sm-6">
 											<div align="center">
 
-
 												<div>
 													<img id="profile-image1" class="img-circle img-responsive" alt="Avatar" 
 														th:src="@{'data:image/png;charset=utf-8;base64,'+${employee.empAvatar}}" />
@@ -53,17 +52,6 @@
 													<input id="profile-image-upload" class="hidden" type="file" name="file"></input>
 													<input id="submitImage" type="submit" value="Wybrałeś zdjęcie? To je ustaw!" class="btn btn-success" /> 
 												</form>	
-													
-													
-													
-													
-												
-												
-
-
-
-
-
 
 											</div>
 
@@ -74,6 +62,9 @@
 										<div class="col-sm-6">
 											<h4 style="color: #008000;" th:text="${employee.empFirstName} + ' ' + ${employee.empLastName}"></h4>
 											<span><p style="color: #d50000;" th:text="'Dział kadr - ' + ${position.positionName}"></p></span>
+											<button type="button" class="open-ChangePasswordDialog btn btn-default btn-xs" data-title="Zmień hasło" data-toggle="modal" data-target="#changePassword">
+												<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Zmień hasło
+											</button>
 										</div>
 
 										<div class="clearfix"></div>
@@ -152,7 +143,37 @@
 
 
 
-
+				<!-- Change password modal -->
+				<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePassword" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+								<h4 class="modal-title custom_align" id="Heading">Zmień swoje hasło</h4>
+							</div>
+							<div class="modal-body">
+								<form action="#" th:action="@{/changepassword}" method="post">
+									<div class="row">
+										<div class="form-group col-xs-6">
+											<label style="width:50%">Nowe hasło: </label>
+											<input id="password_1" class="form-control" type="password" th:field="${pwdForm.empFirstName}"></input>
+										</div>
+										<div class="form-group col-xs-6">
+											<label style="width:50%">Powtórz hasło: </label>
+											<input id="password_2" class="form-control" type="password" th:field="${pwdForm.empLastName}"></input>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<input type="submit" class="btn btn-warning btn-lg" value="Zmień hasło" />
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Change password modal -->
 
 
 
@@ -193,6 +214,14 @@
 		});
 	});
 </script> 
+<script>
+	$(document).on("click", ".open-ChangePasswordDialog", function(e) {
+		e.preventDefault();
+		var _self = $(this);
+
+		$(_self.attr('href')).modal('show');
+	});
+</script>
 <!--  -->
 <!--  -->
 </html>

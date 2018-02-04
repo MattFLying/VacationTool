@@ -37,6 +37,9 @@ public class ApplicationService {
 	public List<Application> findAllForManagerSortedByStatus(int managerId) {
 		return this.app.findAllSortedByStatusById(managerId);
 	}
+	public List<Application> findAllSortedByStatusByEmployeeId(int empId) {
+		return this.app.findAllSortedByStatusByEmployeeId(empId);
+	}
 	
 	
 }

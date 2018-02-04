@@ -19,7 +19,6 @@
         <mapping resource="hbm/Application.hbm.xml" />
         <mapping resource="hbm/Department.hbm.xml" />
         <mapping resource="hbm/Employee.hbm.xml" />
-        <mapping resource="hbm/FreeDays.hbm.xml" />
         <mapping resource="hbm/Position.hbm.xml" />
         <mapping resource="hbm/Vacation.hbm.xml" />
         <mapping resource="hbm/VacationType.hbm.xml" />

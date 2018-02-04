@@ -7,4 +7,5 @@ import vt.db.model.entity.Application;
 public interface IApplication extends IGenericDao<Application> {
 	public List<Application> findAllSortedByStatus();
 	public List<Application> findAllSortedByStatusById(int managerId);
+	public List<Application> findAllSortedByStatusByEmployeeId(int empId);
 }

@@ -28,4 +28,7 @@ public class VacationService {
 	public List<Vacation> getAllVacationsByEmployeeId(int id) {
 		return this.vac.findAllVacationsByEmployeeId(id);
 	}
+	public Vacation getfindVacationByEmployeeIdAndVacationType(int employeeId, int vacationType) {
+		return this.vac.findVacationByEmployeeIdAndVacationType(employeeId, vacationType);
+	}
 }

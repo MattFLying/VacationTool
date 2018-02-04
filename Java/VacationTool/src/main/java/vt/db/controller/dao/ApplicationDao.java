@@ -26,6 +26,7 @@ public class ApplicationDao extends GenericDao<Application> implements IApplicat
 		try {
 			criteria = session.createCriteria(Application.class);
 			criteria.addOrder(Order.desc("appStatus"));
+			criteria.addOrder(Order.desc("appCreatedDate"));
 
 			applications = criteria.list();
 		} catch (Exception e) {
@@ -47,6 +48,29 @@ public class ApplicationDao extends GenericDao<Application> implements IApplicat
 			criteria = session.createCriteria(Application.class);
 			criteria.add(Restrictions.eq("appManagerId", managerId));
 			criteria.addOrder(Order.desc("appStatus"));
+			criteria.addOrder(Order.desc("appCreatedDate"));
+
+			applications = criteria.list();
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return applications;
+	}
+	@Override
+	public List<Application> findAllSortedByStatusByEmployeeId(int empId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Application> applications = new ArrayList<Application>();
+		
+		try {
+			criteria = session.createCriteria(Application.class);
+			criteria.add(Restrictions.eq("appEmployeeId", empId));
+			criteria.addOrder(Order.desc("appStatus"));
+			criteria.addOrder(Order.desc("appCreatedDate"));
 
 			applications = criteria.list();
 		} catch (Exception e) {

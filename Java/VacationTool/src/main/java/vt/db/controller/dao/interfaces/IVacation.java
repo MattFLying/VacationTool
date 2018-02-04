@@ -7,4 +7,5 @@ import vt.db.model.entity.Vacation;
 public interface IVacation extends IGenericDao<Vacation> {
 	public List<Vacation> findAllVacations();
 	public List<Vacation> findAllVacationsByEmployeeId(int employeeId);
+	public Vacation findVacationByEmployeeIdAndVacationType(int employeeId, int vacationType);
 }
