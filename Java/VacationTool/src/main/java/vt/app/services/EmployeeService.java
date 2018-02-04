@@ -48,4 +48,10 @@ public class EmployeeService {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	public List<Employee> getAllEmployeesFromDepartment(int departmentId) {
+		return this.emp.findAllEmployeesFromDepartment(departmentId);
+	}
+	public List<Employee> getAllEmployeesFromDepartmentWithoutId(int departmentId, int employeeId) {
+		return this.emp.findAllEmployeesFromDepartmentWithoutId(departmentId, employeeId);
+	}
 }

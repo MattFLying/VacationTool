@@ -45,6 +45,7 @@ public class ManagerController extends BaseController {
 		model.addAttribute("dept", dept);
 		model.addAttribute("pos", pos);
 		model.addAttribute("vacType", vacType);
+		model.addAttribute("vacations", vacations);
 		model.addAttribute("apps", apps);
 		model.addAttribute("applicationform", new Application());
 		
@@ -91,6 +92,14 @@ public class ManagerController extends BaseController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/create_application", method = RequestMethod.POST)
+	public ModelAndView createApplication(@ModelAttribute(value = "applicationform") Application application, @ModelAttribute(value = "appTypeId") int appTypeId) {
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:m/application");
+	}
 	
 }

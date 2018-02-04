@@ -13,4 +13,6 @@ public interface IEmployee extends IGenericDao<Employee> {
 	public Employee findByIdAvatar(int id);
 	public Employee findByIdPosition(int id);
 	public Employee findByIdManager(int id);
+	public List<Employee> findAllEmployeesFromDepartment(int departmentId);
+	public List<Employee> findAllEmployeesFromDepartmentWithoutId(int departmentId, int employeeId);
 }

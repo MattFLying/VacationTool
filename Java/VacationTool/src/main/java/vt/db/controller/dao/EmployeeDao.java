@@ -1,6 +1,7 @@
 package vt.db.controller.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -167,5 +168,52 @@ public class EmployeeDao extends GenericDao<Employee> implements IEmployee {
 		}
 		
 		return managers;
+	}
+	@Override
+	public List<Employee> findAllEmployeesFromDepartment(int departmentId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Employee> employees = new ArrayList<Employee>();
+		
+		try {
+			criteria = session.createCriteria(Employee.class);
+			criteria.add(Restrictions.eq("empDepartmentId", departmentId));
+
+			employees = criteria.list();
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return employees;
+	}
+	@Override
+	public List<Employee> findAllEmployeesFromDepartmentWithoutId(int departmentId, int employeeId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Employee> employees = new ArrayList<Employee>();
+		
+		try {
+			criteria = session.createCriteria(Employee.class);
+			criteria.add(Restrictions.eq("empDepartmentId", departmentId));
+
+			employees = criteria.list();
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		for (Iterator<Employee> iterator = employees.iterator(); iterator.hasNext(); ) {
+			Employee e = iterator.next();
+		    if (e.getId() == employeeId) {
+		        iterator.remove();
+		    }
+		}
+		
+		return employees;
 	}
 }

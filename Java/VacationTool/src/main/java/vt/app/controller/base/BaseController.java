@@ -54,6 +54,8 @@ public abstract class BaseController {
 		model.addAttribute("areaOfWork", formatAreaOfWork(employee.getEmpAreaOfWork()));
 		session.setAttribute("employeeId", employee.getId());
 		session.setAttribute("ownerName", employee.getNameAndSurname());
+		session.setAttribute("ownerDepartment", employee.getEmpDepartmentId());
+		session.setAttribute("ownerPosition", employee.getEmpPositionId());
 		
 		Employee manager = emp.getEmployeeById(employee.getEmpManagerId());
 		model.addAttribute("manager", formatManager(manager, employee));
