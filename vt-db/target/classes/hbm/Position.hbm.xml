@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-09-26 19:55:22 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+	<class name="db.entity.Position" table="vt_position" catalog="vacation_tool"
+		optimistic-lock="version">
+
+
+		<id name="id" type="java.lang.Integer">
+			<column name="id_position" />
+			<generator class="identity" />
+		</id>
+		<property name="positionName" type="string">
+			<column name="position_name" length="75" />
+		</property>
+		<property name="departmentId" type="java.lang.Integer">
+			<column name="position_department_id" />
+		</property>
+
+
+	</class>
+</hibernate-mapping>

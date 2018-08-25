@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-09-26 19:55:22 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+	<class name="db.entity.Employee" table="vt_employee" catalog="vacation_tool"
+		optimistic-lock="version">
+
+
+		<id name="id" type="java.lang.Integer">
+			<column name="id_employee" />
+			<generator class="identity" />
+		</id>
+		<property name="password" type="string">
+			<column name="emp_password" length="60" />
+		</property>
+		<property name="role" type="string">
+			<column name="emp_role" length="45" />
+		</property>
+		<property name="enabled" type="java.lang.Integer">
+			<column name="emp_enabled" />
+		</property>
+		<property name="firstName" type="string">
+			<column name="emp_first_name" length="75" />
+		</property>
+		<property name="lastName" type="string">
+			<column name="emp_last_name" length="75" />
+		</property>
+		<property name="birthDate" type="string">
+			<column name="emp_birth_date" length="10" />
+		</property>
+		<property name="avatar" type="string">
+			<column name="emp_avatar" />
+		</property>
+		<property name="departmentId" type="java.lang.Integer">
+			<column name="emp_department_id" />
+		</property>
+		<property name="positionId" type="java.lang.Integer">
+			<column name="emp_position_id" />
+		</property>
+		<property name="managerId" type="java.lang.Integer">
+			<column name="emp_manager_id" />
+		</property>
+		<property name="isManager" type="java.lang.Integer">
+			<column name="emp_is_manager" />
+		</property>
+		<property name="evidenceNumber" type="string">
+			<column name="emp_evidence_number" length="4" />
+		</property>
+		<property name="areaOfWork" type="java.lang.Double">
+			<column name="emp_area_of_work" precision="3" />
+		</property>
+		<property name="workingHoursPerDay" type="java.lang.Integer">
+			<column name="emp_working_hours_per_day" />
+		</property>
+		<property name="firstWorkDay" type="string">
+			<column name="emp_first_work_day" length="10" />
+		</property>
+
+
+	</class>
+</hibernate-mapping>

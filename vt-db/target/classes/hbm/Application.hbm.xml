@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-09-26 19:55:22 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+	<class name="db.entity.Application" table="vt_application"
+		catalog="vacation_tool" optimistic-lock="version">
+
+
+		<id name="id" type="java.lang.Integer">
+			<column name="id_application" />
+			<generator class="identity" />
+		</id>
+		<property name="type" type="java.lang.Integer">
+			<column name="app_type" />
+		</property>
+		<property name="dateFrom" type="string">
+			<column name="app_date_from" length="19" />
+		</property>
+		<property name="dateTo" type="string">
+			<column name="app_date_to" length="19" />
+		</property>
+		<property name="days" type="java.lang.Integer">
+			<column name="app_days" />
+		</property>
+		<property name="replacement" type="java.lang.Integer">
+			<column name="app_replacement" />
+		</property>
+		<property name="comment" type="string">
+			<column name="app_comment" />
+		</property>
+		<property name="managerComment" type="string">
+			<column name="app_manager_comment" />
+		</property>
+		<property name="employeeId" type="java.lang.Integer">
+			<column name="app_employee_id" />
+		</property>
+		<property name="managerId" type="java.lang.Integer">
+			<column name="app_manager" />
+		</property>
+		<property name="createdDate" type="string">
+			<column name="app_created_date" length="19" />
+		</property>
+		<property name="acceptedManager" type="java.lang.Integer">
+			<column name="app_accepted_manager" />
+		</property>
+		<property name="acceptedDate" type="string">
+			<column name="app_accepted_date" length="19" />
+		</property>
+		<property name="modifiedDate" type="string">
+			<column name="app_modified_date" length="19" />
+		</property>
+		<property name="status" type="string">
+			<column name="app_status" length="20" />
+		</property>
+
+
+	</class>
+</hibernate-mapping>
