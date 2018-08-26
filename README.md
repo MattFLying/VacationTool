@@ -11,4 +11,6 @@ Java 8 + Spring Boot + Spring Security + Hibernate + Thymeleaf + Bootstrap + jQu
  - Mateusz Mucha aka [Vallendir](https://github.com/Vallendir) 
  - Email: mateusz.marek.mucha@gmail.com
  
- ### Project during refactoring...[27.08.2018]
+
+### Project during refactoring...[27.08.2018]
+##### Final version for master degree is on Branch 0.4.0. Refactoring Branch 0.5.0.
