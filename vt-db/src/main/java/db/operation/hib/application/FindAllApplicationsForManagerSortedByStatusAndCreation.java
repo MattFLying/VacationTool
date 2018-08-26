@@ -22,7 +22,7 @@ import db.util.HibernateUtil;
  * @author Mateusz Mucha
  *
  */
-public class FindAllApplicationsForManagerSortedByStatusAndCreation implements ApplicationListOperation {
+public final class FindAllApplicationsForManagerSortedByStatusAndCreation implements ApplicationListOperation {
 	private Integer managerId;
 
 	/**

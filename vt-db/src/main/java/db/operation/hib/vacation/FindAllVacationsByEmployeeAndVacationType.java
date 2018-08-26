@@ -21,7 +21,7 @@ import db.util.HibernateUtil;
  * @author Mateusz Mucha
  *
  */
-public class FindAllVacationsByEmployeeAndVacationType implements VacationListOperation {
+public final class FindAllVacationsByEmployeeAndVacationType implements VacationListOperation {
 	private Integer employeeId, vacationTypeId;
 
 	/**

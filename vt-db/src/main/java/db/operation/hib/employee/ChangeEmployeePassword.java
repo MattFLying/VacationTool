@@ -19,7 +19,7 @@ import db.util.HibernateUtil;
  * @author Mateusz Mucha
  *
  */
-public class ChangeEmployeePassword implements EmployeeOperation {
+public final class ChangeEmployeePassword implements EmployeeOperation {
 	private Integer employeeId;
 	private String password;
 

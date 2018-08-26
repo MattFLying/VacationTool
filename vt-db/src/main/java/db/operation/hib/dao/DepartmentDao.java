@@ -9,7 +9,7 @@ import db.operation.DepartmentManagement;
  * @author Mateusz Mucha
  *
  */
-public class DepartmentDao extends HibernateDao<Department> implements DepartmentManagement {
+public final class DepartmentDao extends HibernateDao<Department> implements DepartmentManagement {
 	/**
 	 * Default constructor.
 	 */

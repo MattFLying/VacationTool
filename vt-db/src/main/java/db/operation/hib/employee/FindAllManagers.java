@@ -19,7 +19,7 @@ import db.util.HibernateUtil;
  * @author Mateusz Mucha
  *
  */
-public class FindAllManagers implements EmployeeListOperation {
+public final class FindAllManagers implements EmployeeListOperation {
 
 	/**
 	 * Default constructor to instantiate.

@@ -19,7 +19,7 @@ import db.util.HibernateUtil;
  * @author Mateusz Mucha
  *
  */
-public class FindManagerIdIdByEmployeeId implements EmployeeOperation {
+public final class FindManagerIdByEmployeeId implements EmployeeOperation {
 	private Integer employeeId;
 
 	/**
@@ -29,7 +29,7 @@ public class FindManagerIdIdByEmployeeId implements EmployeeOperation {
 	 * @param id
 	 *            identificator of employee
 	 */
-	public FindManagerIdIdByEmployeeId(Integer id) {
+	public FindManagerIdByEmployeeId(Integer id) {
 		this.employeeId = id;
 	}
 
@@ -51,7 +51,7 @@ public class FindManagerIdIdByEmployeeId implements EmployeeOperation {
 			employee = new Employee();
 			employee.setManagerId(session.createQuery(criteria).getResultList().get(0));
 		} catch (HibernateException e) {
-			Logger.getLogger(FindManagerIdIdByEmployeeId.class)
+			Logger.getLogger(FindManagerIdByEmployeeId.class)
 					.error(ExceptionDescription.HIBERNATE_SESSION_OPEN.fullDescription());
 		} finally {
 			if (session != null) {

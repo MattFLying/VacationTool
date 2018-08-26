@@ -21,7 +21,7 @@ import db.util.HibernateUtil;
  * @author Mateusz Mucha
  *
  */
-public class FindAllApplicationsSortedByStatusAndCreation implements ApplicationListOperation {
+public final class FindAllApplicationsSortedByStatusAndCreation implements ApplicationListOperation {
 
 	/**
 	 * Default constructor.

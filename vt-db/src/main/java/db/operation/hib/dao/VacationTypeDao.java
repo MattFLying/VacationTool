@@ -9,7 +9,7 @@ import db.operation.VacationTypeManagement;
  * @author Mateusz Mucha
  *
  */
-public class VacationTypeDao extends HibernateDao<VacationType> implements VacationTypeManagement {
+public final class VacationTypeDao extends HibernateDao<VacationType> implements VacationTypeManagement {
 	/**
 	 * Default constructor.
 	 */

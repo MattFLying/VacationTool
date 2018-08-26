@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
  * @author Mateusz Mucha
  *
  */
-public class HibernateUtil {
+public final class HibernateUtil {
 	private static SessionFactory sessionFactory = null;
 
 	/**

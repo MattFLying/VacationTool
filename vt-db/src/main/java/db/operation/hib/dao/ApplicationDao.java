@@ -14,7 +14,7 @@ import db.operation.hib.application.FindAllApplicationsSortedByStatusAndCreation
  * @author Mateusz Mucha
  *
  */
-public class ApplicationDao extends HibernateDao<Application> implements ApplicationManagement {
+public final class ApplicationDao extends HibernateDao<Application> implements ApplicationManagement {
 	private final HibernateExecutor<Application> executor = new HibernateExecutor<Application>();
 
 	/**

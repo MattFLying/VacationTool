@@ -19,7 +19,7 @@ import db.util.HibernateUtil;
  * @author Mateusz Mucha
  *
  */
-public class FindDepartmentIdByEmployeeId implements EmployeeOperation {
+public final class FindDepartmentIdByEmployeeId implements EmployeeOperation {
 	private Integer employeeId;
 
 	/**

@@ -12,7 +12,7 @@ import db.operation.hib.position.FindAllPositionsByDepartmentId;
  * @author Mateusz Mucha
  *
  */
-public class PositionDao extends HibernateDao<Position> implements PositionManagement {
+public final class PositionDao extends HibernateDao<Position> implements PositionManagement {
 	private final HibernateExecutor<Position> executor = new HibernateExecutor<Position>();
 
 	/**

@@ -13,7 +13,7 @@ import db.operation.hib.vacation.FindAllVacationsByEmployeeId;
  * @author Mateusz Mucha
  *
  */
-public class VacationDao extends HibernateDao<Vacation> implements VacationManagement {
+public final class VacationDao extends HibernateDao<Vacation> implements VacationManagement {
 	private final HibernateExecutor<Vacation> executor = new HibernateExecutor<Vacation>();
 
 	/**

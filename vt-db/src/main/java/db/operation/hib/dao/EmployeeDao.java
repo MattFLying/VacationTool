@@ -12,7 +12,7 @@ import db.operation.hib.employee.FindAvatarByEmployeeId;
 import db.operation.hib.employee.FindDepartmentIdByEmployeeId;
 import db.operation.hib.employee.FindEmployeeByEvidenceNumber;
 import db.operation.hib.employee.FindFullNameOfEmployeeById;
-import db.operation.hib.employee.FindManagerIdIdByEmployeeId;
+import db.operation.hib.employee.FindManagerIdByEmployeeId;
 import db.operation.hib.employee.FindPositionIdByEmployeeId;
 
 /**
@@ -21,7 +21,7 @@ import db.operation.hib.employee.FindPositionIdByEmployeeId;
  * @author Mateusz Mucha
  *
  */
-public class EmployeeDao extends HibernateDao<Employee> implements EmployeesManagement {
+public final class EmployeeDao extends HibernateDao<Employee> implements EmployeesManagement {
 	private final HibernateExecutor<Employee> executor = new HibernateExecutor<Employee>();
 
 	/**
@@ -75,7 +75,7 @@ public class EmployeeDao extends HibernateDao<Employee> implements EmployeesMana
 
 	@Override
 	public Integer findManagerIdById(Integer id) {
-		return executor.action(new FindManagerIdIdByEmployeeId(id)).getManagerId();
+		return executor.action(new FindManagerIdByEmployeeId(id)).getManagerId();
 	}
 
 	@Override
