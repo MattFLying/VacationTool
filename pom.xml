@@ -5,7 +5,7 @@
 
 	<groupId>VacationTool</groupId>
 	<artifactId>VacationTool-root</artifactId>
-	<version>0.4.0</version>
+	<version>0.5.5</version>
 	<packaging>pom</packaging>
 
 	<name>VacationTool</name>

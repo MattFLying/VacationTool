@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: vt-web
-Implementation-Version: 0.4.0
+Implementation-Version: 0.5.5
 Built-By: Vallendir
 Implementation-Vendor-Id: VacationTool
 Build-Jdk: 1.8.0_162

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>VacationTool</groupId>
 		<artifactId>VacationTool-root</artifactId>
-		<version>0.4.0</version>
+		<version>0.5.5</version>
 	</parent>
 	<artifactId>vt-web</artifactId>
 
@@ -22,6 +22,18 @@
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>VacationTool</groupId>
+			<artifactId>vt-db</artifactId>
+			<version>0.5.5</version>
+		</dependency>
+		<dependency>
+			<groupId>VacationTool</groupId>
+			<artifactId>vt-core</artifactId>
+			<version>0.5.5</version>
 		</dependency>
 	</dependencies>
 
