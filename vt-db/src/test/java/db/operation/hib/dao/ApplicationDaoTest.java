@@ -3,6 +3,7 @@ package db.operation.hib.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import db.entity.Application;
 import db.operation.ApplicationManagement;
 import db.operation.DatabaseOperations;
+import db.operation.repository.hib.ApplicationDao;
 
 /**
  * Class to test functionality of ApplicationDao.
@@ -175,10 +177,12 @@ public class ApplicationDaoTest {
 	 */
 	@Test
 	public void findAllByOrderByStatusDescCreatedDateDescTest() {
-		List<Application> list_1 = dao.findAllByOrderByStatusDescCreatedDateDesc();
+		List<Application> list_1 = dao.findAllByOrderByStatusDescCreatedDateDesc().stream()
+				.collect(Collectors.toList());
 		assertNotNull(list_1);
-		
-		List<Application> list_2 = management.findAllByOrderByStatusDescCreatedDateDesc();
+
+		List<Application> list_2 = management.findAllByOrderByStatusDescCreatedDateDesc().stream()
+				.collect(Collectors.toList());
 		assertNotNull(list_2);
 	}
 
@@ -188,10 +192,12 @@ public class ApplicationDaoTest {
 	 */
 	@Test
 	public void findAllByManagerIdOrderByStatusDescCreatedDateDescTest() {
-		List<Application> list_1 = dao.findAllByManagerIdOrderByStatusDescCreatedDateDesc(managerId);
+		List<Application> list_1 = dao.findAllByManagerIdOrderByStatusDescCreatedDateDesc(managerId).stream()
+				.collect(Collectors.toList());
 		assertNotNull(list_1);
-		
-		List<Application> list_2 = management.findAllByManagerIdOrderByStatusDescCreatedDateDesc(managerId);
+
+		List<Application> list_2 = management.findAllByManagerIdOrderByStatusDescCreatedDateDesc(managerId).stream()
+				.collect(Collectors.toList());
 		assertNotNull(list_2);
 	}
 
@@ -201,10 +207,12 @@ public class ApplicationDaoTest {
 	 */
 	@Test
 	public void findAllByEmployeeIdOrderByStatusDescCreatedDateDescTest() {
-		List<Application> list_1 = dao.findAllByEmployeeIdOrderByStatusDescCreatedDateDesc(idToTest);
+		List<Application> list_1 = dao.findAllByEmployeeIdOrderByStatusDescCreatedDateDesc(idToTest).stream()
+				.collect(Collectors.toList());
 		assertNotNull(list_1);
-		
-		List<Application> list_2 = management.findAllByEmployeeIdOrderByStatusDescCreatedDateDesc(idToTest);
+
+		List<Application> list_2 = management.findAllByEmployeeIdOrderByStatusDescCreatedDateDesc(idToTest).stream()
+				.collect(Collectors.toList());
 		assertNotNull(list_2);
 	}
 

@@ -1,7 +1,6 @@
 package db.operation;
 
-import java.util.List;
-
+import java.util.Collection;
 import db.entity.Vacation;
 
 /**
@@ -19,7 +18,7 @@ public interface VacationManagement extends DatabaseOperations<Vacation> {
 	 *            identificator of employee
 	 * @return list of all vacations for employee
 	 */
-	List<Vacation> findAllByEmployeeId(Integer employeeId);
+	Collection<Vacation> findAllByEmployeeId(Integer employeeId);
 
 	/**
 	 * Method to find all vacations by specific type of these vacations for
@@ -31,5 +30,5 @@ public interface VacationManagement extends DatabaseOperations<Vacation> {
 	 *            identificator of vacation type
 	 * @return vacation list of specific type for employee
 	 */
-	List<Vacation> findAllByEmployeeIdAndVacationType(Integer employeeId, Integer vacationType);
+	Collection<Vacation> findAllByEmployeeIdAndVacationType(Integer employeeId, Integer vacationType);
 }

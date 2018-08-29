@@ -1,6 +1,10 @@
 package db.operation.hib.employee;
 
+import java.util.Optional;
+
+import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
+import javax.persistence.TransactionRequiredException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
@@ -62,13 +66,25 @@ public final class ChangeEmployeePassword implements EmployeeOperation {
 		} catch (RollbackException e) {
 			Logger.getLogger(ChangeEmployeePassword.class)
 					.error(ExceptionDescription.HIBERNATE_TRANSATION_FAIL.fullDescription());
+		} catch (IllegalStateException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ENTITYMANAGER_CLOSED.fullDescription());
+		} catch (IllegalArgumentException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ATTRIBUTE_NO_EXIST.fullDescription());
+		} catch (TransactionRequiredException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_TRANSACTION_FAIL.fullDescription());
+		} catch (PersistenceException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_QUERY_TIMED_OUT.fullDescription());
 		} finally {
 			if (session != null) {
 				session.close();
 			}
 		}
 
-		return employee;
+		return Optional.ofNullable(employee).orElse(new Employee("No ", "data."));
 	}
 
 }

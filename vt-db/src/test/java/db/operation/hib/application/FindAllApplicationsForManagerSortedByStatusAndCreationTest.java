@@ -2,7 +2,9 @@ package db.operation.hib.application;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -30,7 +32,7 @@ public class FindAllApplicationsForManagerSortedByStatusAndCreationTest {
 
 		assertNotNull(find);
 
-		List<Application> list = find.run();
+		List<Application> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}
@@ -45,7 +47,7 @@ public class FindAllApplicationsForManagerSortedByStatusAndCreationTest {
 
 		assertNotNull(find);
 
-		List<Application> list = find.run();
+		List<Application> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}
@@ -56,12 +58,12 @@ public class FindAllApplicationsForManagerSortedByStatusAndCreationTest {
 	 */
 	@Test
 	public void runTestForInstantiateByMainInterface() {
-		HibernateOperation<List<Application>> find = new FindAllApplicationsForManagerSortedByStatusAndCreation(
+		HibernateOperation<Collection<Application>> find = new FindAllApplicationsForManagerSortedByStatusAndCreation(
 				managerId);
 
 		assertNotNull(find);
 
-		List<Application> list = find.run();
+		List<Application> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}

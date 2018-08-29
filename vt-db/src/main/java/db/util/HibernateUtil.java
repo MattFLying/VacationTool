@@ -1,5 +1,7 @@
 package db.util;
 
+import java.util.Optional;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -18,10 +20,7 @@ public final class HibernateUtil {
 	 * @return session factory
 	 */
 	public static SessionFactory getSessionFactory() {
-		if (sessionFactory == null) {
-			sessionFactory = new Configuration().configure().buildSessionFactory();
-		}
-		return sessionFactory;
+		return Optional.ofNullable(sessionFactory).orElse(new Configuration().configure().buildSessionFactory());
 	}
 
 	/**

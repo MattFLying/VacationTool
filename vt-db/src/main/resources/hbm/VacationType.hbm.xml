@@ -12,10 +12,10 @@
 			<generator class="identity" />
 		</id>
 		<property name="vacationTypeName" type="string">
-			<column name="vacType_name" length="45" />
+			<column name="vacation_type_name" length="45" />
 		</property>
 		<property name="vacationTypeMaxDays" type="java.lang.Integer">
-			<column name="vacType_maxDays" />
+			<column name="vacation_type_max_days" />
 		</property>
 
 

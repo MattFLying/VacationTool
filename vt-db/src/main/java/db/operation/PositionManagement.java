@@ -1,7 +1,6 @@
 package db.operation;
 
-import java.util.List;
-
+import java.util.Collection;
 import db.entity.Position;
 
 /**
@@ -19,5 +18,5 @@ public interface PositionManagement extends DatabaseOperations<Position> {
 	 *            identificator of department
 	 * @return list of positions of department
 	 */
-	List<Position> findAllByDepartmentId(Integer departmentId);
+	Collection<Position> findAllByDepartmentId(Integer departmentId);
 }

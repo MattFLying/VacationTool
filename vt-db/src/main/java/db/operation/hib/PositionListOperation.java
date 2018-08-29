@@ -1,7 +1,6 @@
 package db.operation.hib;
 
-import java.util.List;
-
+import java.util.Collection;
 import db.entity.Position;
 
 /**
@@ -11,6 +10,6 @@ import db.entity.Position;
  * @author Mateusz Mucha
  *
  */
-public interface PositionListOperation extends HibernateOperation<List<Position>> {
+public interface PositionListOperation extends HibernateOperation<Collection<Position>> {
 
 }

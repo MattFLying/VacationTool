@@ -1,7 +1,10 @@
 package db.operation.hib.employee;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
+
+import javax.persistence.RollbackException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -38,9 +41,9 @@ public final class FindAllEmployeesByDepartmentIdWithoutEmployeeId implements Em
 	}
 
 	@Override
-	public List<Employee> run() {
+	public Collection<Employee> run() {
 		Session session = null;
-		List<Employee> employees = new ArrayList<Employee>();
+		Collection<Employee> employees = new ArrayList<Employee>();
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -50,20 +53,29 @@ public final class FindAllEmployeesByDepartmentIdWithoutEmployeeId implements Em
 			Root<Employee> root = criteria.from(Employee.class);
 
 			criteria.where(builder.equal(root.get("departmentId"), departmentId));
-			session.createQuery(criteria).getResultList().forEach(employee -> {
-				if (employee.getId() != employeeId)
-					employees.add(employee);
-			});
+			session.createQuery(criteria).getResultList()
+					.stream()
+					.filter(employee -> employee.getId() != employeeId)
+					.forEach(employee -> employees.add(employee));
 		} catch (HibernateException e) {
-			Logger.getLogger(FindAllEmployeesByDepartmentIdWithoutEmployeeId.class)
+			Logger.getLogger(ChangeEmployeePassword.class)
 					.error(ExceptionDescription.HIBERNATE_SESSION_OPEN.fullDescription());
+		} catch (RollbackException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_TRANSATION_FAIL.fullDescription());
+		} catch (IllegalStateException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ENTITYMANAGER_CLOSED.fullDescription());
+		} catch (IllegalArgumentException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ATTRIBUTE_NO_EXIST.fullDescription());
 		} finally {
 			if (session != null) {
 				session.close();
 			}
 		}
 
-		return (employees != null) ? employees : new ArrayList<Employee>();
+		return Optional.ofNullable(employees).orElse(new ArrayList<Employee>());
 	}
 
 }

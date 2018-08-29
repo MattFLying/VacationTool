@@ -1,7 +1,10 @@
 package db.operation.hib.application;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
+
+import javax.persistence.RollbackException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -12,6 +15,7 @@ import org.jboss.logging.Logger;
 import db.entity.Application;
 import db.exception.ExceptionDescription;
 import db.operation.hib.ApplicationListOperation;
+import db.operation.hib.employee.ChangeEmployeePassword;
 import db.util.HibernateUtil;
 
 /**
@@ -37,9 +41,9 @@ public final class FindAllApplicationsForEmployeeSortedByStatusAndCreation imple
 	}
 
 	@Override
-	public List<Application> run() {
+	public Collection<Application> run() {
 		Session session = null;
-		List<Application> applications = new ArrayList<Application>();
+		Collection<Application> applications = null;
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -53,15 +57,24 @@ public final class FindAllApplicationsForEmployeeSortedByStatusAndCreation imple
 
 			applications = session.createQuery(criteria).getResultList();
 		} catch (HibernateException e) {
-			Logger.getLogger(FindAllApplicationsForEmployeeSortedByStatusAndCreation.class)
+			Logger.getLogger(ChangeEmployeePassword.class)
 					.error(ExceptionDescription.HIBERNATE_SESSION_OPEN.fullDescription());
+		} catch (RollbackException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_TRANSATION_FAIL.fullDescription());
+		} catch (IllegalStateException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ENTITYMANAGER_CLOSED.fullDescription());
+		} catch (IllegalArgumentException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ATTRIBUTE_NO_EXIST.fullDescription());
 		} finally {
 			if (session != null) {
 				session.close();
 			}
 		}
 
-		return (applications != null) ? applications : new ArrayList<Application>();
+		return Optional.ofNullable(applications).orElse(new ArrayList<Application>());
 	}
 
 }

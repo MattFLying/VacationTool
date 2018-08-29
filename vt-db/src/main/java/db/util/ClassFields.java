@@ -3,6 +3,7 @@ package db.util;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import org.jboss.logging.Logger;
 
@@ -36,25 +37,38 @@ public final class ClassFields {
 
 		try {
 			Field[] fields = object.getDeclaredFields();
-			for (int i = 0; i < fields.length; i++) {
-				fields[i].setAccessible(true);
-				fieldMap.put(fields[i].getName(), fields[i].get(objectToRetrieveFields));
-			}
+			putRetrievedFieldsIntoMap(objectToRetrieveFields, fieldMap, fields);
 
 			object = objectToRetrieveFields.getClass().getSuperclass();
 			fields = object.getDeclaredFields();
-			for (int i = 0; i < fields.length; i++) {
-				fields[i].setAccessible(true);
-				fieldMap.put(fields[i].getName(), fields[i].get(objectToRetrieveFields));
-			}
+			putRetrievedFieldsIntoMap(objectToRetrieveFields, fieldMap, fields);
 		} catch (IllegalArgumentException e) {
 			Logger.getLogger(ClassFields.class).error(ExceptionDescription.CLASS_FIELDS_ARGUMENT.fullDescription());
-		} catch (IllegalAccessException e) {
-			Logger.getLogger(ClassFields.class).error(ExceptionDescription.CLASS_FIELDS_ACCESS.fullDescription());
 		} catch (SecurityException e) {
 			Logger.getLogger(ClassFields.class).error(ExceptionDescription.CLASS_FIELDS_SECURITY.fullDescription());
 		}
 
 		return fieldMap;
+	}
+
+	/**
+	 * Method to filtering and put all found fields into map.
+	 * 
+	 * @param objectToRetrieveFields
+	 *            class object to retrieve fields
+	 * @param fieldMap
+	 *            fields and their values map
+	 * @param fields
+	 *            existing fields in passed object to retrieve these fields
+	 */
+	private static void putRetrievedFieldsIntoMap(final Object objectToRetrieveFields, Map<Object, Object> fieldMap, Field[] fields) {
+		Stream.of(fields).filter(field -> !"serialVersionUID".equals(field.getName())).forEach(field -> {
+			try {
+				field.setAccessible(true);
+				fieldMap.put(field.getName(), field.get(objectToRetrieveFields));
+			} catch (IllegalAccessException e) {
+				Logger.getLogger(ClassFields.class).error(ExceptionDescription.CLASS_FIELDS_ACCESS.fullDescription());
+			}
+		});
 	}
 }

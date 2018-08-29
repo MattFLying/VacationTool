@@ -8,6 +8,7 @@ import org.junit.Test;
 import db.entity.VacationType;
 import db.operation.DatabaseOperations;
 import db.operation.VacationTypeManagement;
+import db.operation.repository.hib.VacationTypeDao;
 
 /**
  * Class to test functionality of VacationTypeDao.

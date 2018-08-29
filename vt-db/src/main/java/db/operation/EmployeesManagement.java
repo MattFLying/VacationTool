@@ -1,6 +1,6 @@
 package db.operation;
 
-import java.util.List;
+import java.util.Collection;
 import db.entity.Employee;
 
 /**
@@ -26,7 +26,7 @@ public interface EmployeesManagement extends DatabaseOperations<Employee> {
 	 * 
 	 * @return list of managers with only a few specific fields.
 	 */
-	List<Employee> findAllManagers();
+	Collection<Employee> findAllManagers();
 
 	/**
 	 * Method to get all employees from specific department.
@@ -36,7 +36,7 @@ public interface EmployeesManagement extends DatabaseOperations<Employee> {
 	 *            returned
 	 * @return list of employees from specific deparment
 	 */
-	List<Employee> findAllByDepartmentId(Integer departmentId);
+	Collection<Employee> findAllByDepartmentId(Integer departmentId);
 
 	/**
 	 * Method to get all employees from specific department without one of them
@@ -50,7 +50,7 @@ public interface EmployeesManagement extends DatabaseOperations<Employee> {
 	 *            e.g. if he is a manager and is no needed
 	 * @return list of employees from specific deparment
 	 */
-	List<Employee> findAllByDepartmentIdAndIdNot(Integer departmentId, Integer id);
+	Collection<Employee> findAllByDepartmentIdAndIdNot(Integer departmentId, Integer id);
 
 	/**
 	 * Method to get first name and last name of employee as one formated string

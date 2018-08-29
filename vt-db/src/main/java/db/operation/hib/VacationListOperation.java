@@ -1,7 +1,6 @@
 package db.operation.hib;
 
-import java.util.List;
-
+import java.util.Collection;
 import db.entity.Vacation;
 
 /**
@@ -11,6 +10,6 @@ import db.entity.Vacation;
  * @author Mateusz Mucha
  *
  */
-public interface VacationListOperation extends HibernateOperation<List<Vacation>> {
+public interface VacationListOperation extends HibernateOperation<Collection<Vacation>> {
 
 }

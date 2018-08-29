@@ -3,6 +3,7 @@ package db.operation.hib.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import db.entity.Vacation;
 import db.operation.DatabaseOperations;
 import db.operation.VacationManagement;
+import db.operation.repository.hib.VacationDao;
 
 /**
  * Class to test functionality of VacationDao.
@@ -177,10 +179,10 @@ public class VacationDaoTest {
 	 */
 	@Test
 	public void findAllByEmployeeIdTest() {
-		List<Vacation> list1 = dao.findAllByEmployeeId(idToTest);
+		List<Vacation> list1 = dao.findAllByEmployeeId(idToTest).stream().collect(Collectors.toList());
 		assertNotNull(list1);
 
-		List<Vacation> list2 = management.findAllByEmployeeId(idToTest);
+		List<Vacation> list2 = management.findAllByEmployeeId(idToTest).stream().collect(Collectors.toList());
 		assertNotNull(list2);
 	}
 
@@ -189,10 +191,12 @@ public class VacationDaoTest {
 	 */
 	@Test
 	public void findAllByEmployeeIdAndVacationTypeTest() {
-		List<Vacation> list = dao.findAllByEmployeeIdAndVacationType(idToTest, vacationTypeId);
+		List<Vacation> list = dao.findAllByEmployeeIdAndVacationType(idToTest, vacationTypeId).stream()
+				.collect(Collectors.toList());
 		assertNotNull(list);
 
-		List<Vacation> list2 = management.findAllByEmployeeIdAndVacationType(idToTest, vacationTypeId);
+		List<Vacation> list2 = management.findAllByEmployeeIdAndVacationType(idToTest, vacationTypeId).stream()
+				.collect(Collectors.toList());
 		assertNotNull(list2);
 	}
 

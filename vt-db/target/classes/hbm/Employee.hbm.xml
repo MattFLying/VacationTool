@@ -8,53 +8,53 @@
 
 
 		<id name="id" type="java.lang.Integer">
-			<column name="id_employee" />
+			<column name="id" />
 			<generator class="identity" />
 		</id>
 		<property name="password" type="string">
-			<column name="emp_password" length="60" />
+			<column name="password" length="60" />
 		</property>
 		<property name="role" type="string">
-			<column name="emp_role" length="45" />
+			<column name="role" length="45" />
 		</property>
 		<property name="enabled" type="java.lang.Integer">
-			<column name="emp_enabled" />
+			<column name="enabled" />
 		</property>
 		<property name="firstName" type="string">
-			<column name="emp_first_name" length="75" />
+			<column name="first_name" length="75" />
 		</property>
 		<property name="lastName" type="string">
-			<column name="emp_last_name" length="75" />
+			<column name="last_name" length="75" />
 		</property>
 		<property name="birthDate" type="string">
-			<column name="emp_birth_date" length="10" />
+			<column name="birth_date" length="10" />
 		</property>
 		<property name="avatar" type="string">
-			<column name="emp_avatar" />
+			<column name="avatar" />
 		</property>
 		<property name="departmentId" type="java.lang.Integer">
-			<column name="emp_department_id" />
+			<column name="department_id" />
 		</property>
 		<property name="positionId" type="java.lang.Integer">
-			<column name="emp_position_id" />
+			<column name="position_id" />
 		</property>
 		<property name="managerId" type="java.lang.Integer">
-			<column name="emp_manager_id" />
+			<column name="manager_id" />
 		</property>
 		<property name="isManager" type="java.lang.Integer">
-			<column name="emp_is_manager" />
+			<column name="is_manager" />
 		</property>
 		<property name="evidenceNumber" type="string">
-			<column name="emp_evidence_number" length="4" />
+			<column name="evidence_number" length="4" />
 		</property>
 		<property name="areaOfWork" type="java.lang.Double">
-			<column name="emp_area_of_work" precision="3" />
+			<column name="area_of_work" precision="3" />
 		</property>
 		<property name="workingHoursPerDay" type="java.lang.Integer">
-			<column name="emp_working_hours_per_day" />
+			<column name="working_hours_per_day" />
 		</property>
 		<property name="firstWorkDay" type="string">
-			<column name="emp_first_work_day" length="10" />
+			<column name="first_work_day" length="10" />
 		</property>
 
 

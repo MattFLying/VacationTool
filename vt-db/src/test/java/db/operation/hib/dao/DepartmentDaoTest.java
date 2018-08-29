@@ -8,6 +8,7 @@ import org.junit.Test;
 import db.entity.Department;
 import db.operation.DatabaseOperations;
 import db.operation.DepartmentManagement;
+import db.operation.repository.hib.DepartmentDao;
 
 /**
  * Class to test functionality of DepartmentDao.

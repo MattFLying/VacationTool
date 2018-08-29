@@ -8,50 +8,50 @@
 
 
 		<id name="id" type="java.lang.Integer">
-			<column name="id_application" />
+			<column name="id" />
 			<generator class="identity" />
 		</id>
 		<property name="type" type="java.lang.Integer">
-			<column name="app_type" />
+			<column name="type" />
 		</property>
 		<property name="dateFrom" type="string">
-			<column name="app_date_from" length="19" />
+			<column name="date_from" length="19" />
 		</property>
 		<property name="dateTo" type="string">
-			<column name="app_date_to" length="19" />
+			<column name="date_to" length="19" />
 		</property>
 		<property name="days" type="java.lang.Integer">
-			<column name="app_days" />
+			<column name="days" />
 		</property>
 		<property name="replacement" type="java.lang.Integer">
-			<column name="app_replacement" />
+			<column name="replacement" />
 		</property>
 		<property name="comment" type="string">
-			<column name="app_comment" />
+			<column name="comment" />
 		</property>
 		<property name="managerComment" type="string">
-			<column name="app_manager_comment" />
+			<column name="manager_comment" />
 		</property>
 		<property name="employeeId" type="java.lang.Integer">
-			<column name="app_employee_id" />
+			<column name="employee_id" />
 		</property>
 		<property name="managerId" type="java.lang.Integer">
-			<column name="app_manager" />
+			<column name="manager_id" />
 		</property>
 		<property name="createdDate" type="string">
-			<column name="app_created_date" length="19" />
+			<column name="created_date" length="19" />
 		</property>
 		<property name="acceptedManager" type="java.lang.Integer">
-			<column name="app_accepted_manager" />
+			<column name="accepted_manager" />
 		</property>
 		<property name="acceptedDate" type="string">
-			<column name="app_accepted_date" length="19" />
+			<column name="accepted_date" length="19" />
 		</property>
 		<property name="modifiedDate" type="string">
-			<column name="app_modified_date" length="19" />
+			<column name="modified_date" length="19" />
 		</property>
 		<property name="status" type="string">
-			<column name="app_status" length="20" />
+			<column name="status" length="20" />
 		</property>
 
 

@@ -1,5 +1,8 @@
 package db.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Entity class represents application of vacation.<br>
  * <br>
@@ -9,7 +12,9 @@ package db.entity;
  * @author Mateusz Mucha
  *
  */
-public final class Application extends Entity {
+@Entity
+@Table(name = "vt_application")
+public final class Application extends BaseEntity {
 	private static final long serialVersionUID = -1142522010772045610L;
 	private String dateFrom, dateTo, acceptedDate, modifiedDate, status, managerComment, createdDate, comment;
 	private Integer type, days, replacement, employeeId, managerId, acceptedManager;

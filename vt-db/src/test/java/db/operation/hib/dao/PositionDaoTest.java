@@ -3,6 +3,7 @@ package db.operation.hib.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import db.entity.Position;
 import db.operation.DatabaseOperations;
 import db.operation.PositionManagement;
+import db.operation.repository.hib.PositionDao;
 
 /**
  * Class to test functionality of PositionDao.
@@ -170,10 +172,10 @@ public class PositionDaoTest {
 	 */
 	@Test
 	public void findAllByDepartmentIdTest() {
-		List<Position> list_1 = dao.findAllByDepartmentId(idToTest);
+		List<Position> list_1 = dao.findAllByDepartmentId(idToTest).stream().collect(Collectors.toList());
 		assertNotNull(list_1);
 
-		List<Position> list_2 = management.findAllByDepartmentId(idToTest);
+		List<Position> list_2 = management.findAllByDepartmentId(idToTest).stream().collect(Collectors.toList());
 		assertNotNull(list_2);
 	}
 }

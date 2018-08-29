@@ -1,5 +1,9 @@
 package db.operation.hib.employee;
 
+import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.RollbackException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -49,17 +53,29 @@ public final class FindPositionIdByEmployeeId implements EmployeeOperation {
 			criteria.select(root.get("positionId"));
 
 			employee = new Employee();
-			employee.setPositionId(session.createQuery(criteria).getResultList().get(0));
+			List<Integer> result = session.createQuery(criteria).getResultList();
+			if (Optional.ofNullable(result).isPresent() && result.size() == 1) {
+				employee.setPositionId(result.get(0));
+			}
 		} catch (HibernateException e) {
-			Logger.getLogger(FindPositionIdByEmployeeId.class)
+			Logger.getLogger(ChangeEmployeePassword.class)
 					.error(ExceptionDescription.HIBERNATE_SESSION_OPEN.fullDescription());
+		} catch (RollbackException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_TRANSATION_FAIL.fullDescription());
+		} catch (IllegalStateException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ENTITYMANAGER_CLOSED.fullDescription());
+		} catch (IllegalArgumentException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ATTRIBUTE_NO_EXIST.fullDescription());
 		} finally {
 			if (session != null) {
 				session.close();
 			}
 		}
 
-		return employee;
+		return Optional.ofNullable(employee).orElse(new Employee("No ", "data."));
 	}
 
 }

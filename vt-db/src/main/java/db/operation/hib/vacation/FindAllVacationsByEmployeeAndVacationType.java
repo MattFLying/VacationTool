@@ -1,7 +1,10 @@
 package db.operation.hib.vacation;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
+
+import javax.persistence.RollbackException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -12,6 +15,7 @@ import org.jboss.logging.Logger;
 import db.entity.Vacation;
 import db.exception.ExceptionDescription;
 import db.operation.hib.VacationListOperation;
+import db.operation.hib.employee.ChangeEmployeePassword;
 import db.util.HibernateUtil;
 
 /**
@@ -39,9 +43,9 @@ public final class FindAllVacationsByEmployeeAndVacationType implements Vacation
 	}
 
 	@Override
-	public List<Vacation> run() {
+	public Collection<Vacation> run() {
 		Session session = null;
-		List<Vacation> vacations = new ArrayList<Vacation>();
+		Collection<Vacation> vacations = null;
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -54,15 +58,24 @@ public final class FindAllVacationsByEmployeeAndVacationType implements Vacation
 					builder.equal(root.get("vacationType"), vacationTypeId)));
 			vacations = session.createQuery(criteria).getResultList();
 		} catch (HibernateException e) {
-			Logger.getLogger(FindAllVacationsByEmployeeAndVacationType.class)
+			Logger.getLogger(ChangeEmployeePassword.class)
 					.error(ExceptionDescription.HIBERNATE_SESSION_OPEN.fullDescription());
+		} catch (RollbackException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_TRANSATION_FAIL.fullDescription());
+		} catch (IllegalStateException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ENTITYMANAGER_CLOSED.fullDescription());
+		} catch (IllegalArgumentException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ATTRIBUTE_NO_EXIST.fullDescription());
 		} finally {
 			if (session != null) {
 				session.close();
 			}
 		}
 
-		return (vacations != null) ? vacations : new ArrayList<Vacation>();
+		return Optional.ofNullable(vacations).orElse(new ArrayList<Vacation>());
 	}
 
 }

@@ -10,16 +10,6 @@
 	</parent>
 	<artifactId>vt-db</artifactId>
 
-	<developers>
-		<developer>
-			<id>mm</id>
-			<name>Mateusz Mucha</name>
-			<email>mateusz.marek.mucha@gmail.com</email>
-			<roles>
-				<role>developer</role>
-			</roles>
-		</developer>
-	</developers>
 
 	<dependencies>
 		<dependency>
@@ -37,10 +27,7 @@
 			<artifactId>javassist</artifactId>
 			<version>3.12.1.GA</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-		</dependency>
+
 	</dependencies>
 
 </project>

@@ -1,5 +1,8 @@
 package db.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Entity class represents Employee.<br>
  * <br>
@@ -9,7 +12,9 @@ package db.entity;
  * @author Mateusz Mucha
  *
  */
-public final class Employee extends Entity {
+@Entity
+@Table(name = "vt_employee")
+public final class Employee extends BaseEntity {
 	private static final long serialVersionUID = -1400760321767476971L;
 	private String firstName, password, role, lastName, birthDate, avatar, evidenceNumber, firstWorkDay;
 	private Integer departmentId, enabled, positionId, managerId, isManager, workingHoursPerDay;

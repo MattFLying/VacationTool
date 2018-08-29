@@ -1,6 +1,6 @@
 package db.operation;
 
-import java.util.List;
+import java.util.Collection;
 
 import db.entity.Application;
 
@@ -19,7 +19,7 @@ public interface ApplicationManagement extends DatabaseOperations<Application> {
 	 * 
 	 * @return sorted list of applications by status
 	 */
-	List<Application> findAllByOrderByStatusDescCreatedDateDesc();
+	Collection<Application> findAllByOrderByStatusDescCreatedDateDesc();
 
 	/**
 	 * Method to find all vacation applications sorted by status and created
@@ -30,7 +30,7 @@ public interface ApplicationManagement extends DatabaseOperations<Application> {
 	 *            identificator of manager
 	 * @return sorted list of applications by status for specific manager
 	 */
-	List<Application> findAllByManagerIdOrderByStatusDescCreatedDateDesc(Integer managerId);
+	Collection<Application> findAllByManagerIdOrderByStatusDescCreatedDateDesc(Integer managerId);
 
 	/**
 	 * Method to find all vacation applications sorted by status and created
@@ -41,5 +41,5 @@ public interface ApplicationManagement extends DatabaseOperations<Application> {
 	 *            identificator of employee
 	 * @return sorted list of applications by status for specific employee
 	 */
-	List<Application> findAllByEmployeeIdOrderByStatusDescCreatedDateDesc(Integer employeeId);
+	Collection<Application> findAllByEmployeeIdOrderByStatusDescCreatedDateDesc(Integer employeeId);
 }

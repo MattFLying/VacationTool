@@ -1,5 +1,8 @@
 package db.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Entity class represents Position.<br>
  * <br>
@@ -9,7 +12,9 @@ package db.entity;
  * @author Mateusz Mucha
  *
  */
-public final class Position extends Entity {
+@Entity
+@Table(name = "vt_position")
+public final class Position extends BaseEntity {
 	private static final long serialVersionUID = 8899862037850331650L;
 	private String positionName;
 	private Integer departmentId;

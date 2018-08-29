@@ -1,5 +1,9 @@
 package db.operation.hib.employee;
 
+import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.RollbackException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -48,22 +52,32 @@ public final class FindFullNameOfEmployeeById implements EmployeeOperation {
 			criteria.where(builder.equal(root.get("id"), employeeId));
 			criteria.select(builder.array(root.get("firstName"), root.get("lastName")));
 
-			Object[] result = session.createQuery(criteria).getResultList().get(0);
+			List<Object[]> result = session.createQuery(criteria).getResultList();
+			if (Optional.ofNullable(result).isPresent() && result.size() == 1) {
+				String name = String.valueOf(result.get(0)[0]);
+				String surname = String.valueOf(result.get(0)[1]);
 
-			String firstName = (String) result[0];
-			String lastName = (String) result[1];
-
-			employee = new Employee(firstName, lastName);
+				employee = new Employee(name, surname);
+			}
 		} catch (HibernateException e) {
-			Logger.getLogger(FindFullNameOfEmployeeById.class)
+			Logger.getLogger(ChangeEmployeePassword.class)
 					.error(ExceptionDescription.HIBERNATE_SESSION_OPEN.fullDescription());
+		} catch (RollbackException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_TRANSATION_FAIL.fullDescription());
+		} catch (IllegalStateException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ENTITYMANAGER_CLOSED.fullDescription());
+		} catch (IllegalArgumentException e) {
+			Logger.getLogger(ChangeEmployeePassword.class)
+					.error(ExceptionDescription.HIBERNATE_ATTRIBUTE_NO_EXIST.fullDescription());
 		} finally {
 			if (session != null) {
 				session.close();
 			}
 		}
 
-		return employee;
+		return Optional.ofNullable(employee).orElse(new Employee("No ", "data."));
 	}
 
 }

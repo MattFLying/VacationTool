@@ -1,5 +1,8 @@
 package db.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Entity class represents Department.<br>
  * <br>
@@ -9,7 +12,9 @@ package db.entity;
  * @author Mateusz Mucha
  *
  */
-public final class Department extends Entity {
+@Entity
+@Table(name = "vt_department")
+public final class Department extends BaseEntity {
 	private static final long serialVersionUID = -6065174214450498585L;
 	private String departmentName;
 

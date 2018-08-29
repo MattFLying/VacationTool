@@ -2,7 +2,9 @@ package db.operation.hib.employee;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -32,7 +34,7 @@ public class FindAllEmployeesByDepartmentIdWithoutEmployeeIdTest {
 
 		assertNotNull(find);
 
-		List<Employee> list = find.run();
+		List<Employee> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}
@@ -47,7 +49,7 @@ public class FindAllEmployeesByDepartmentIdWithoutEmployeeIdTest {
 
 		assertNotNull(find);
 
-		List<Employee> list = find.run();
+		List<Employee> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}
@@ -58,12 +60,12 @@ public class FindAllEmployeesByDepartmentIdWithoutEmployeeIdTest {
 	 */
 	@Test
 	public void runTestForInstantiateByMainInterface() {
-		HibernateOperation<List<Employee>> find = new FindAllEmployeesByDepartmentIdWithoutEmployeeId(departmentId,
-				employeeId);
+		HibernateOperation<Collection<Employee>> find = new FindAllEmployeesByDepartmentIdWithoutEmployeeId(
+				departmentId, employeeId);
 
 		assertNotNull(find);
 
-		List<Employee> list = find.run();
+		List<Employee> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}

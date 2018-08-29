@@ -1,5 +1,8 @@
 package db.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Entity class represents Vacation Type.<br>
  * <br>
@@ -9,7 +12,9 @@ package db.entity;
  * @author Mateusz Mucha
  *
  */
-public final class VacationType extends Entity {
+@Entity
+@Table(name = "vt_vacation_type")
+public final class VacationType extends BaseEntity {
 	private static final long serialVersionUID = -4948327781815195654L;
 	private String vacationTypeName;
 	private Integer vacationTypeMaxDays;

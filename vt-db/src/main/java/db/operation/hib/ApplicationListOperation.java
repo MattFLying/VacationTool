@@ -1,7 +1,6 @@
 package db.operation.hib;
 
-import java.util.List;
-
+import java.util.Collection;
 import db.entity.Application;
 
 /**
@@ -11,6 +10,6 @@ import db.entity.Application;
  * @author Mateusz Mucha
  *
  */
-public interface ApplicationListOperation extends HibernateOperation<List<Application>> {
+public interface ApplicationListOperation extends HibernateOperation<Collection<Application>> {
 
 }

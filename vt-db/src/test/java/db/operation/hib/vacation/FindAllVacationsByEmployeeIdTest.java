@@ -2,7 +2,9 @@ package db.operation.hib.vacation;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -29,7 +31,7 @@ public class FindAllVacationsByEmployeeIdTest {
 
 		assertNotNull(find);
 
-		List<Vacation> list = find.run();
+		List<Vacation> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}
@@ -44,7 +46,7 @@ public class FindAllVacationsByEmployeeIdTest {
 
 		assertNotNull(find);
 
-		List<Vacation> list = find.run();
+		List<Vacation> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}
@@ -55,11 +57,11 @@ public class FindAllVacationsByEmployeeIdTest {
 	 */
 	@Test
 	public void runTestForInstantiateByMainInterface() {
-		HibernateOperation<List<Vacation>> find = new FindAllVacationsByEmployeeId(employeeId);
+		HibernateOperation<Collection<Vacation>> find = new FindAllVacationsByEmployeeId(employeeId);
 
 		assertNotNull(find);
 
-		List<Vacation> list = find.run();
+		List<Vacation> list = find.run().stream().collect(Collectors.toList());
 		assertNotNull(list);
 		assertFalse(list.isEmpty());
 	}

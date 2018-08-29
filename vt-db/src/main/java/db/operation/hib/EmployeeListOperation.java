@@ -1,6 +1,6 @@
 package db.operation.hib;
 
-import java.util.List;
+import java.util.Collection;
 import db.entity.Employee;
 
 /**
@@ -10,6 +10,6 @@ import db.entity.Employee;
  * @author Mateusz Mucha
  *
  */
-public interface EmployeeListOperation extends HibernateOperation<List<Employee>> {
+public interface EmployeeListOperation extends HibernateOperation<Collection<Employee>> {
 
 }

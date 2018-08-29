@@ -8,20 +8,20 @@
 
 
 		<id name="id" type="java.lang.Integer">
-			<column name="id_vacation" />
+			<column name="id" />
 			<generator class="identity" />
 		</id>
 		<property name="vacationYear" type="java.lang.Integer">
-			<column name="vac_year" />
+			<column name="vacation_year" />
 		</property>
 		<property name="vacationDaysLeft" type="java.lang.Integer">
-			<column name="vac_days_left" />
+			<column name="vacation_days_left" />
 		</property>
 		<property name="vacationType" type="int">
-			<column name="vac_type" not-null="true" />
+			<column name="vacation_type" not-null="true" />
 		</property>
 		<property name="employeeId" type="int">
-			<column name="vac_employee_id" not-null="true" />
+			<column name="employee_id" not-null="true" />
 		</property>
 
 
