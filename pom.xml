@@ -25,7 +25,17 @@
 		<java.version>1.8</java.version>
 
 	</properties>
-
+	
+	<developers>
+		<developer>
+			<id>mm</id>
+			<name>Mateusz Mucha</name>
+			<email>mateusz.marek.mucha@gmail.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<modules>
 		<module>vt-core</module>
@@ -49,6 +59,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 	</dependencies>
