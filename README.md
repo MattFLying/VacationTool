@@ -13,7 +13,7 @@ Java 8 + Spring Boot + Spring Security + Hibernate + Thymeleaf + Bootstrap + jQu
  
 
 ### Project during refactoring...[27.08.2018]
-##### Final version for master degree is on Branch 0.4.0. Refactoring Branch 0.5.0.
+##### Final version for master degree is on Branch 0.4.0. Refactoring Branch 0.5.0+.
 ##### After refactoring
 Three maven modules:
 - Core is a module with common functionality and types to use whenever in other modules
