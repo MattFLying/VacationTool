@@ -8,7 +8,7 @@ The project is system for management of vacation applications in company. There 
 Java 8 + Spring Boot + Spring Security + Hibernate + Thymeleaf + Bootstrap + jQuery. IDE Eclipse Mars.2
 
 ## Author
- - Mateusz Mucha aka [Vallendir](https://github.com/Vallendir) 
+ - Mateusz Mucha aka [MattFLying](https://github.com/MattFLying) 
  - Email: mateusz.marek.mucha@gmail.com
  
 
